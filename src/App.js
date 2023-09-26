@@ -2,6 +2,9 @@ import React from "react";
 import axios from "axios";
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fontAwesomeIcons } from "./Assets/fontAwesomeIcon";
+
 import Header from "./Header";
 import Footer from "./Footer";
 
@@ -13,7 +16,7 @@ import {
   Authors,
   Actors,
 } from "./Pages/indexPages";
-
+library.add(fontAwesomeIcons);
 function App() {
   return (
     <Router>
