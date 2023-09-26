@@ -1,5 +1,120 @@
+// @import "./Extends/Display.scss";
+@import "./Mixins/Display.scss";
+@import "./Variables.scss";
 .Header {
-  background-color: red;
+  background-color: #03293c;
   display: flex;
   justify-content: space-between;
+  .activate {
+    // display: flex;
+    @include DisplayCenter;
+    background-color: pink;
+    position: absolute;
+    top: 75%;
+    // bottom: 5px;
+  }
+  .deactivate {
+    display: none;
+    // background-color: rebeccapurple;
+  }
+  .ImgBox {
+    cursor: pointer;
+  }
+  .boxNav {
+    @include DisplayCenter;
+    position: relative;
+    // background-color: yellow;
+    min-height: 100%;
+    .FIcon {
+      color: white;
+      font-size: 20px;
+      padding: 5px;
+      cursor: pointer;
+      margin-right: 10px;
+      border-radius: 5px;
+      border: 1px solid transparent;
+      &:hover {
+        border: 1px solid white;
+      }
+    }
+    .BoxLink {
+      flex-wrap: wrap;
+      background: linear-gradient(
+        to bottom,
+        $darkColor1,
+        $purpleColor,
+        $blueColor
+      );
+      border-radius: 0 0 0 5px;
+      .link {
+        color: white;
+        padding: 5px;
+        font-size: 20px;
+        text-decoration: none;
+        border: 1px solid white;
+        border-radius: 5px;
+        margin: 4px 7px;
+        width: 100px;
+        background-color: transparent;
+        transition: background-color 1s ease;
+        &:hover {
+          background-color: $purpleColor2;
+        }
+        &::after {
+          color: white;
+        }
+      }
+    }
+  }
+
+  .BLogin {
+    margin-right: 20px;
+    width: 60px;
+    height: 50px;
+    cursor: pointer;
+    background: linear-gradient(to top, $darkColor1, $purpleColor, $blueColor);
+    border: 1px solid rgba(255, 255, 255, 0.404);
+    box-shadow: 0px 0px 20px 1px rgba(255, 255, 255, 0.483);
+    border-radius: 4px;
+    .userIcon {
+      color: white;
+      background-color: none;
+    }
+    p {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.7s ease;
+      display: inherit;
+      text-align: center;
+      color: white;
+    }
+    &:hover {
+      border: 1px solid rgba(255, 255, 255, 0.631);
+      p {
+        max-height: 50px;
+      }
+    }
+  }
+
+  @media (min-width: 760px) {
+    .boxNav {
+      .FIcon {
+        display: none;
+      }
+      .activate,
+      .deactivate {
+        @include DisplayCenter;
+      }
+      .BoxLink {
+        padding-right: 20px;
+        background: none;
+        .link {
+          text-align: center;
+          &:hover {
+            background-color: $blueColor;
+          }
+        }
+      }
+    }
+  }
 }
