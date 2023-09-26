@@ -1,0 +1,19 @@
+@import "./Variables.scss";
+.Footer {
+  height: 130px;
+  background: linear-gradient(to left, $darkColor1, $purpleColor);
+  box-sizing: border-box;
+  .BoxText {
+    color: white;
+    font-size: 20px;
+    text-align: center;
+  }
+  .ImgBox {
+    cursor: pointer;
+    padding-right: 30px;
+    padding-top: 10px;
+    margin-left: auto;
+    height: 80px;
+    width: 80px;
+  }
+}
