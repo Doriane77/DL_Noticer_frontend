@@ -8,7 +8,6 @@ import useHeaderStore from "./Stores/Header";
 
 function Header() {
   const { seeMenu, invertSeeMenu } = useHeaderStore();
-  console.log("seeMenu: ", seeMenu);
 
   return (
     <div className="Header">
