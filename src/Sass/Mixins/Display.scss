@@ -1,0 +1,6 @@
+@mixin DisplayCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+//   @include DisplayCenter;
