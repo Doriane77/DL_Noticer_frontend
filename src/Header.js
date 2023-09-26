@@ -33,7 +33,7 @@ function Header() {
           <Link className="link" to="/books">
             Livre
           </Link>
-          <Link className="link" to="/actor">
+          <Link className="link" to="/actors">
             Acteur
           </Link>
           <Link className="link" to="/director">
