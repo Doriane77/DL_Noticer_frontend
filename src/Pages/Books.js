@@ -8,7 +8,7 @@ export default function Books() {
   const close = useHeaderStore((state) => state.close);
   useEffect(() => {
     close();
-  }, []);
+  }, [close]);
 
   useEffect(() => {
     const fetchMovies = async () => {

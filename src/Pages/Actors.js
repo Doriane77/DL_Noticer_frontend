@@ -6,6 +6,6 @@ export default function Actors() {
 
   useEffect(() => {
     close();
-  }, []);
+  }, [close]);
   return <div className="Actors">Actors </div>;
 }

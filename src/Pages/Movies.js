@@ -19,7 +19,7 @@ export default function Movies() {
       }
     };
     fetchMovies();
-  }, []);
+  }, [close]);
   return (
     <div className="Movies">
       <div>Recherche</div>

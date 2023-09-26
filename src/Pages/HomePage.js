@@ -21,7 +21,7 @@ export default function HomePage() {
       }
     };
     fetchMovies();
-  }, []);
+  }, [close]);
   return (
     <div className="HomePage">
       <section>

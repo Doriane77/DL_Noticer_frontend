@@ -6,6 +6,6 @@ export default function Authors() {
 
   useEffect(() => {
     close();
-  }, []);
+  }, [close]);
   return <div className="Authors">authors </div>;
 }
