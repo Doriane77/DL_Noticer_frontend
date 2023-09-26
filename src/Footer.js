@@ -10,7 +10,7 @@ export default function Footer() {
         desc="Lettre N avec un degradé violet bleu"
         navTo={"/"}
       />
-      <div className="BoxText">Lollia Doriane - 2023 - </div>
+      <p>Lollia Doriane - 2023 - </p>
     </div>
   );
 }
