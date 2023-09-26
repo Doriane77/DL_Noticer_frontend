@@ -1,9 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ImgBox from "../Components/ImgBox";
+import useHeaderStore from "../Stores/Header";
 // import "";
 export default function Books() {
   const [dataBooks, setDataBooks] = useState([]);
+  const close = useHeaderStore((state) => state.close);
+  useEffect(() => {
+    close();
+  }, []);
 
   useEffect(() => {
     const fetchMovies = async () => {
