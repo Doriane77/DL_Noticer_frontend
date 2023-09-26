@@ -1,21 +1,17 @@
-// @import "./Extends/Display.scss";
 @import "./Mixins/Display.scss";
 @import "./Variables.scss";
 .Header {
-  background-color: #03293c;
+  background-color: $darkColor1;
   display: flex;
   justify-content: space-between;
+  box-shadow: 0px 2px 20px 0px $blueColor;
   .activate {
-    // display: flex;
     @include DisplayCenter;
-    background-color: pink;
     position: absolute;
     top: 75%;
-    // bottom: 5px;
   }
   .deactivate {
     display: none;
-    // background-color: rebeccapurple;
   }
   .ImgBox {
     cursor: pointer;
@@ -23,7 +19,6 @@
   .boxNav {
     @include DisplayCenter;
     position: relative;
-    // background-color: yellow;
     min-height: 100%;
     .FIcon {
       color: white;
@@ -66,7 +61,6 @@
       }
     }
   }
-
   .BLogin {
     margin-right: 20px;
     width: 60px;
@@ -95,7 +89,6 @@
       }
     }
   }
-
   @media (min-width: 760px) {
     .boxNav {
       .FIcon {
@@ -104,6 +97,8 @@
       .activate,
       .deactivate {
         @include DisplayCenter;
+        position: inherit;
+        top: inherit;
       }
       .BoxLink {
         padding-right: 20px;
