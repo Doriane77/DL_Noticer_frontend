@@ -1,38 +1,42 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
+import "../Sass/Pages/Movies.scss";
+import axios from "axios";
+
 import ImgBox from "../Components/ImgBox";
 import useHeaderStore from "../Stores/Header";
-// import "";
+import InSearch from "../Components/InSearch";
+import useMoviesStore from "../Stores/useMoviesStore";
+
 export default function Movies() {
-  const [dataMovies, setDataMovies] = useState([]);
-  const close = useHeaderStore((state) => state.close);
+  const movies = useMoviesStore((s) => s.movies);
+  const searchMovie = useMoviesStore((s) => s.searchMovie);
+  const fetchAllMovies = useMoviesStore((s) => s.fetchAllMovies);
+  const fetchMoviesByTitle = useMoviesStore((s) => s.fetchMoviesByTitle);
+  const close = useHeaderStore((s) => s.close);
+
   useEffect(() => {
     close();
-    const fetchMovies = async () => {
-      try {
-        const requete = await axios.get(
-          `${process.env.REACT_APP_URL}/movie/all`
-        );
-        setDataMovies(requete.data);
-      } catch (error) {
-        console.error("Erreur :", error);
-      }
-    };
-    fetchMovies();
-  }, [close]);
+    fetchAllMovies();
+  }, [close, fetchAllMovies]);
+  useEffect(() => {
+    fetchMoviesByTitle();
+  }, [searchMovie]);
   return (
     <div className="Movies">
-      <div>Recherche</div>
+      <InSearch props={{ page: "Movies", placeholder: "Rechercher" }} />
       <section>
-        {dataMovies.map((movie) => {
-          // console.log("movie: ", movie);
-          return (
-            <article>
-              <ImgBox image={movie.image} desc={movie.title} />
-              <h2>{movie.title}</h2>
-            </article>
-          );
-        })}
+        {movies.length === 0 ? (
+          <p>Aucun film trouver</p>
+        ) : (
+          movies.map((movie) => {
+            return (
+              <article key={movie._id}>
+                <ImgBox image={movie.image} desc={movie.title} />
+                <h2>{movie.title}</h2>
+              </article>
+            );
+          })
+        )}
       </section>
     </div>
   );

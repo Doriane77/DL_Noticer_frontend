@@ -2,39 +2,41 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ImgBox from "../Components/ImgBox";
 import useHeaderStore from "../Stores/Header";
-// import "";
+import InSearch from "../Components/InSearch";
+import "../Sass/Pages/Books.scss";
+import useBooksStore from "../Stores/useBooksStore";
 export default function Books() {
-  const [dataBooks, setDataBooks] = useState([]);
+  const books = useBooksStore((s) => s.books);
+  const searchBooks = useBooksStore((s) => s.searchBooks);
+  const fetchAllBooks = useBooksStore((s) => s.fetchAllBooks);
+  const fetchBooksByTitle = useBooksStore((s) => s.fetchBooksByTitle);
+
   const close = useHeaderStore((state) => state.close);
   useEffect(() => {
     close();
+    fetchAllBooks();
   }, [close]);
 
   useEffect(() => {
-    const fetchMovies = async () => {
-      try {
-        const requete = await axios.get(
-          `${process.env.REACT_APP_URL}/book/all`
-        );
-        setDataBooks(requete.data);
-      } catch (error) {
-        console.error("Erreur :", error);
-      }
-    };
-    fetchMovies();
-  }, []);
+    fetchBooksByTitle();
+  }, [searchBooks]);
   return (
     <div className="Books">
+      <InSearch props={{ page: "Books", placeholder: "Rechercher" }} />
+
       <section>
-        {dataBooks.map((book) => {
-          console.log("book: ", book);
-          return (
-            <article>
-              <ImgBox image={book.image} desc={book.title} />
-              <h2>{book.title}</h2>
-            </article>
-          );
-        })}
+        {books.length === 0 ? (
+          <p>Pas de livre trouver</p>
+        ) : (
+          books.map((book) => {
+            return (
+              <article>
+                <ImgBox image={book.image} desc={book.title} />
+                <h2>{book.title}</h2>
+              </article>
+            );
+          })
+        )}
       </section>
     </div>
   );
