@@ -1,0 +1,36 @@
+@import "./Display.scss";
+@mixin SectionStyle {
+  padding: 20px 5%;
+  background-image: url("../../Assets/FondFreepik2.jpg");
+  min-height: 90vh;
+  @include DisplayCenter;
+  flex-direction: column;
+
+  section {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    article {
+      background-image: url("../../Assets/FondFreepik.jpg");
+      width: 140px;
+      height: 260px;
+      padding: 5px 10px;
+      margin: 5px;
+      box-shadow: 2px 2px 5px 3px white;
+      border-radius: 3px;
+      cursor: pointer;
+      h2 {
+        @include DisplayCenter;
+        text-align: center;
+        height: 50px;
+        color: white;
+        font-size: 14px;
+      }
+      > .ImgBox {
+        height: 210px;
+        width: 140px;
+      }
+    }
+  }
+}

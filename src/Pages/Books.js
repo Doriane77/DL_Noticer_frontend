@@ -30,7 +30,7 @@ export default function Books() {
         ) : (
           books.map((book) => {
             return (
-              <article>
+              <article key={book._id}>
                 <ImgBox image={book.image} desc={book.title} />
                 <h2>{book.title}</h2>
               </article>
