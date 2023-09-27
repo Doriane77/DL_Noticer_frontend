@@ -2,8 +2,20 @@ import { create } from "zustand";
 import axios from "axios";
 const useDirectorsStore = create((set, get) => ({
   directors: [],
+  id_Director: "",
   searchDirector: "",
   searchDirectors: (e) => set({ searchDirector: e.target.value }),
+  fetchOneDiretor: async () => {
+    const { searchDirector } = get();
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_URL}/director/one/:id`
+      );
+      set({ directors: response.data });
+    } catch (error) {
+      console.error("Erreur :", error);
+    }
+  },
   fetchDirectorsByTitle: async () => {
     const { searchDirector } = get();
     try {

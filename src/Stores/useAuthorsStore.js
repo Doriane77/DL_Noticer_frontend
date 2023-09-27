@@ -3,7 +3,19 @@ import axios from "axios";
 const useAuthorsStore = create((set, get) => ({
   authors: [],
   searchAuthor: "",
+  Id_Author: "",
+  currentAuthor: null,
   searchAuthors: (e) => set({ searchAuthor: e.target.value }),
+  fetchOneAuthor: async (id) => {
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_URL}/author/one/${id}`
+      );
+      set({ currentAuthor: response.data });
+    } catch (error) {
+      console.error("Erreur :", error);
+    }
+  },
   fetchAuthorsByTitle: async () => {
     const { searchAuthor } = get();
     try {
