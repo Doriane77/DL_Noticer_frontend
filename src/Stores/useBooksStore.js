@@ -3,7 +3,18 @@ import axios from "axios";
 const useBooksStore = create((set, get) => ({
   books: [],
   searchBook: "",
+  currentBook: null,
   searchBooks: (e) => set({ searchBook: e.target.value }),
+  fetchOnebook: async (id) => {
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_URL}/book/one/${id}`
+      );
+      set({ currentBook: response.data });
+    } catch (error) {
+      console.error("Erreur :", error);
+    }
+  },
   fetchBooksByTitle: async () => {
     const { searchBook } = get();
     try {

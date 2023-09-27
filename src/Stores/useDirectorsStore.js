@@ -4,14 +4,14 @@ const useDirectorsStore = create((set, get) => ({
   directors: [],
   id_Director: "",
   searchDirector: "",
+  currentDirector: null,
   searchDirectors: (e) => set({ searchDirector: e.target.value }),
-  fetchOneDiretor: async () => {
-    const { searchDirector } = get();
+  fetchOneDiretor: async (id) => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_URL}/director/one/:id`
+        `${process.env.REACT_APP_URL}/director/one/${id}`
       );
-      set({ directors: response.data });
+      set({ currentDirector: response.data });
     } catch (error) {
       console.error("Erreur :", error);
     }

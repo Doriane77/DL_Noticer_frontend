@@ -3,7 +3,6 @@ import axios from "axios";
 const useAuthorsStore = create((set, get) => ({
   authors: [],
   searchAuthor: "",
-  Id_Author: "",
   currentAuthor: null,
   searchAuthors: (e) => set({ searchAuthor: e.target.value }),
   fetchOneAuthor: async (id) => {

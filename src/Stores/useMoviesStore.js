@@ -3,7 +3,18 @@ import axios from "axios";
 const useMoviesStore = create((set, get) => ({
   movies: [],
   searchMovie: "",
+  currentMovie: null,
   searchMovies: (e) => set({ searchMovie: e.target.value }),
+  fetchOneMovie: async (id) => {
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_URL}/movie/one/${id}`
+      );
+      set({ currentMovie: response.data });
+    } catch (error) {
+      console.error("Erreur :", error);
+    }
+  },
   fetchMoviesByTitle: async () => {
     const { searchMovie } = get();
     try {
