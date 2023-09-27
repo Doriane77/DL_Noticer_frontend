@@ -3,7 +3,7 @@ import useHeaderStore from "../Stores/Header";
 import useDirectorsStore from "../Stores/useDirectorsStore";
 import InSearch from "../Components/InSearch";
 import ImgBox from "../Components/ImgBox";
-import "../Sass/Pages/Director.scss";
+import "../Sass/Pages/Directors.scss";
 export default function Director() {
   const directors = useDirectorsStore((s) => s.directors);
   const searchDirector = useDirectorsStore((s) => s.searchDirector);
