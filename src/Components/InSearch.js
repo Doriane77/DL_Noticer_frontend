@@ -3,6 +3,7 @@ import "../Sass/Components/InSearch.scss";
 import useMoviesStore from "../Stores/useMoviesStore";
 import useBooksStore from "../Stores/useBooksStore";
 import useActorsStore from "../Stores/useActorsStore";
+import useDirectorsStore from "../Stores/useDirectorsStore";
 export default function InSearch({ props }) {
   const { page, placeholder, textLabel } = props;
   const searchMovie = useMoviesStore((s) => s.searchMovie);
@@ -11,6 +12,8 @@ export default function InSearch({ props }) {
   const searchBooks = useBooksStore((s) => s.searchBooks);
   const searchActor = useActorsStore((s) => s.searchActor);
   const searchActors = useActorsStore((s) => s.searchActors);
+  const searchDirector = useDirectorsStore((s) => s.searchDirector);
+  const searchDirectors = useDirectorsStore((s) => s.searchDirectors);
   let searchIn;
   let changeIn;
   if (page === "Movies") {
@@ -24,6 +27,10 @@ export default function InSearch({ props }) {
   if (page === "Actors") {
     searchIn = searchActor;
     changeIn = searchActors;
+  }
+  if (page === "Director") {
+    searchIn = searchDirector;
+    changeIn = searchDirectors;
   }
   return (
     <input
