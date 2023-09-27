@@ -5,6 +5,7 @@ import useHeaderStore from "../Stores/Header";
 import InSearch from "../Components/InSearch";
 import "../Sass/Pages/Books.scss";
 import useBooksStore from "../Stores/useBooksStore";
+import Sections from "../Components/Sections";
 export default function Books() {
   const books = useBooksStore((s) => s.books);
   const searchBooks = useBooksStore((s) => s.searchBooks);
@@ -23,21 +24,7 @@ export default function Books() {
   return (
     <div className="Books">
       <InSearch props={{ page: "Books", placeholder: "Rechercher" }} />
-
-      <section>
-        {books.length === 0 ? (
-          <p>Pas de livre trouver</p>
-        ) : (
-          books.map((book) => {
-            return (
-              <article key={book._id}>
-                <ImgBox image={book.image} desc={book.title} />
-                <h2>{book.title}</h2>
-              </article>
-            );
-          })
-        )}
-      </section>
+      <Sections props={{ page: "Books", data: books }} />
     </div>
   );
 }

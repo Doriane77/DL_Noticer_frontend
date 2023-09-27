@@ -4,7 +4,10 @@ import useAuthorsStore from "../Stores/useAuthorsStore";
 import InSearch from "../Components/InSearch";
 import ImgBox from "../Components/ImgBox";
 import "../Sass/Pages/Authors.scss";
+import { useNavigate } from "react-router-dom";
+import Sections from "../Components/Sections";
 export default function Authors() {
+  let navigate = useNavigate();
   const authors = useAuthorsStore((s) => s.authors);
   const searchAuthor = useAuthorsStore((s) => s.searchAuthor);
   const fetchAllAuthors = useAuthorsStore((s) => s.fetchAllAuthors);
@@ -21,20 +24,7 @@ export default function Authors() {
   return (
     <div className="Authors">
       <InSearch props={{ page: "Authors", placeholder: "Rechercher" }} />
-      <section>
-        {authors.length === 0 ? (
-          <p>Aucun film trouver</p>
-        ) : (
-          authors.map((author) => {
-            return (
-              <article key={author._id}>
-                <ImgBox image={author.image} desc={author.title} />
-                <h2>{author.author}</h2>
-              </article>
-            );
-          })
-        )}
-      </section>
+      <Sections props={{ page: "Authors", data: authors }} />
     </div>
   );
 }

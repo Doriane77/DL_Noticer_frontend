@@ -4,6 +4,7 @@ import useActorsStore from "../Stores/useActorsStore";
 import InSearch from "../Components/InSearch";
 import ImgBox from "../Components/ImgBox";
 import "../Sass/Pages/Actors.scss";
+import Sections from "../Components/Sections";
 export default function Actors() {
   const actors = useActorsStore((s) => s.actors);
   const searchActor = useActorsStore((s) => s.searchActor);
@@ -21,20 +22,7 @@ export default function Actors() {
   return (
     <div className="Actors">
       <InSearch props={{ page: "Actors", placeholder: "Rechercher" }} />
-      <section>
-        {actors.length === 0 ? (
-          <p>Aucun film trouver</p>
-        ) : (
-          actors.map((actor) => {
-            return (
-              <article key={actor._id}>
-                <ImgBox image={actor.image} desc={actor.title} />
-                <h2>{actor.name + " " + actor.surname}</h2>
-              </article>
-            );
-          })
-        )}
-      </section>
+      <Sections props={{ page: "Actors", data: actors }} />
     </div>
   );
 }
