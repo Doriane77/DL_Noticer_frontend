@@ -4,6 +4,7 @@ import useMoviesStore from "../Stores/useMoviesStore";
 import useBooksStore from "../Stores/useBooksStore";
 import useActorsStore from "../Stores/useActorsStore";
 import useDirectorsStore from "../Stores/useDirectorsStore";
+import useAuthorsStore from "../Stores/useAuthorsStore";
 export default function InSearch({ props }) {
   const { page, placeholder, textLabel } = props;
   const searchMovie = useMoviesStore((s) => s.searchMovie);
@@ -14,6 +15,10 @@ export default function InSearch({ props }) {
   const searchActors = useActorsStore((s) => s.searchActors);
   const searchDirector = useDirectorsStore((s) => s.searchDirector);
   const searchDirectors = useDirectorsStore((s) => s.searchDirectors);
+
+  const searchAuthor = useAuthorsStore((s) => s.searchAuthor);
+  const searchAuthors = useAuthorsStore((s) => s.searchAuthors);
+
   let searchIn;
   let changeIn;
   if (page === "Movies") {
@@ -28,9 +33,13 @@ export default function InSearch({ props }) {
     searchIn = searchActor;
     changeIn = searchActors;
   }
-  if (page === "Director") {
+  if (page === "Directors") {
     searchIn = searchDirector;
     changeIn = searchDirectors;
+  }
+  if (page === "Authors") {
+    searchIn = searchAuthor;
+    changeIn = searchAuthors;
   }
   return (
     <input
