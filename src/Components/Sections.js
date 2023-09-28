@@ -1,12 +1,11 @@
 import React from "react";
 import ImgBox from "./ImgBox";
 import { useNavigate } from "react-router-dom";
-//  import "";
 export default function Sections({ props }) {
   const { data, page } = props;
   let navigate = useNavigate();
   return (
-    <section>
+    <section className="Sections">
       {data.length === 0 ? (
         <p>Aucun film trouver</p>
       ) : (

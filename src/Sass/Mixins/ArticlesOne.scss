@@ -1,0 +1,28 @@
+@mixin ArticlesOne {
+  > .ImgBox {
+    min-height: 150px;
+    min-width: 100px;
+    max-height: 150px;
+    max-width: 100px;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  .textBox {
+    background-image: url("../../Assets/FondFreepik3.jpg");
+    background-size: cover;
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.424);
+    margin-left: 10px;
+    padding: 8px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 1px rgb(131, 131, 131);
+    p,
+    h1 {
+      color: white;
+    }
+    p {
+      margin-top: 10px;
+    }
+  }
+}
+//   @include ArticlesOne

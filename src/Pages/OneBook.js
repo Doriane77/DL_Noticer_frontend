@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import useBooksStore from "../Stores/useBooksStore";
-//  import "";
+import Details from "../Components/Details";
+import "../Sass/Pages/OneBook.scss";
 export default function OneBook() {
   const { id } = useParams();
   const fetchOnebook = useBooksStore((state) => state.fetchOnebook);
@@ -14,5 +15,16 @@ export default function OneBook() {
   if (!currentBook) {
     return <p>Chargement...</p>;
   }
-  return <div className="OneBook">OneBook </div>;
+  return (
+    <div className="OneBook">
+      <Details
+        image={currentBook.image}
+        imgdesc={currentBook.title}
+        title={currentBook.title}
+        desc={currentBook.summary}
+        creator={currentBook.author}
+        page="Authors"
+      />
+    </div>
+  );
 }
