@@ -21,11 +21,15 @@ import {
   OneBook,
   OneMovie,
 } from "./Pages/indexPages";
+
+import UserForm from "./Modals/UserForm";
+
 library.add(fontAwesomeIcons);
 function App() {
   return (
     <Router>
       <Header />
+      <UserForm />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/movies" element={<Movies />} />

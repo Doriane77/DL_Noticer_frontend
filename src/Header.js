@@ -5,10 +5,13 @@ import Logo from "./Assets/Logo.png";
 import ImgBox from "./Components/ImgBox";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useHeaderStore from "./Stores/Header";
+import useUserStore from "./Stores/useUserStore";
 
 function Header() {
   const { seeMenu, invertSeeMenu } = useHeaderStore();
-
+  const { open } = useUserStore();
+  const user = useUserStore((s) => s.user);
+  console.log("user: ", user);
   return (
     <div className="Header">
       <ImgBox
@@ -42,10 +45,14 @@ function Header() {
             Autheur
           </Link>
         </nav>
-        <button className="BLogin">
-          <FontAwesomeIcon className="userIcon" icon="fa-solid fa-user" />
-          <p>LOGIN</p>
-        </button>
+        {user ? (
+          <button className="User">{user.user.username} ♥</button>
+        ) : (
+          <button className="BLogin" onClick={() => open()}>
+            <FontAwesomeIcon className="userIcon" icon="fa-solid fa-user" />
+            <p>LOGIN</p>
+          </button>
+        )}
       </div>
     </div>
   );

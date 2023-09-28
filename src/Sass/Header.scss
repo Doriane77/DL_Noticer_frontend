@@ -93,6 +93,18 @@
       }
     }
   }
+  .User {
+    background-color: transparent;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    transition: color 0.3s ease-in-out;
+    padding-right: 10px;
+    &:hover {
+      color: aqua;
+    }
+  }
   @media (min-width: 950px) {
     .boxNav {
       .FIcon {
