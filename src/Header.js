@@ -46,7 +46,9 @@ function Header() {
           </Link>
         </nav>
         {user ? (
-          <button className="User">{user.user.username} ♥</button>
+          <button className="User" onClick={() => open()}>
+            {user.username} ♥
+          </button>
         ) : (
           <button className="BLogin" onClick={() => open()}>
             <FontAwesomeIcon className="userIcon" icon="fa-solid fa-user" />

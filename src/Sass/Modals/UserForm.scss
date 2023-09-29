@@ -7,7 +7,8 @@
   width: 100%;
   top: 0px;
   .LoginForm,
-  .RegisterForm {
+  .RegisterForm,
+  .UpdateForm {
     @include DisplayCenter;
     position: relative;
     background-image: url("../../Assets/FondFreepik4.jpg");
@@ -38,6 +39,14 @@
         background-color: white;
       }
     }
+    h1 {
+      font-size: 30px;
+      font-weight: 900;
+      text-align: center;
+      margin-bottom: 20px;
+      color: black;
+      text-shadow: 2px 2px 5px white;
+    }
     .error {
       text-align: center;
 
@@ -66,6 +75,27 @@
       transition: background-image 0.3s ease-in-out;
       &:hover {
         background-image: url(../../Assets/BHover.png);
+      }
+    }
+    .deleteAccount {
+      margin-top: 10px;
+      color: red;
+      text-shadow: 1px 1px 1px white;
+      box-shadow: 0px 0px 1px 1px white;
+      background-color: transparent;
+      padding: 3px;
+      border-radius: 5px;
+      border: 1px solid red;
+      font-weight: 900;
+      transition: All 0.3s ease-in-out;
+      &:hover {
+        color: white;
+        text-shadow: 1px 1px 1px black;
+        box-shadow: 0px 0px 1px 1px black;
+        background-color: red;
+        padding: 3px;
+        border-radius: 5px;
+        border: 1px solid white;
       }
     }
     .changeForm {
