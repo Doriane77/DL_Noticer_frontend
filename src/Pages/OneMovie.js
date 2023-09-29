@@ -4,6 +4,7 @@ import useMoviesStore from "../Stores/useMoviesStore";
 import ArticlesOne from "../Components/ArticlesOne";
 import "../Sass/Pages/OneMovie.scss";
 import Details from "../Components/Details";
+import Reviews from "../Components/Reviews";
 export default function OneMovie() {
   const { id } = useParams();
   const fetchOneMovie = useMoviesStore((state) => state.fetchOneMovie);
@@ -25,8 +26,10 @@ export default function OneMovie() {
         desc={currentMovie.synopsis}
         creator={currentMovie.director}
         actors={currentMovie.actors}
+        rating={currentMovie.rating}
         page="Directors"
       />
+      <Reviews reviews={currentMovie.reviews} />
     </div>
   );
 }

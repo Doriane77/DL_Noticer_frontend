@@ -2,7 +2,7 @@ import React from "react";
 import ImgBox from "./ImgBox";
 import { Link } from "react-router-dom";
 
-//  import "";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export default function Details({
   image,
   imgdesc,
@@ -11,8 +11,8 @@ export default function Details({
   creator,
   actors,
   page,
+  rating,
 }) {
-  console.log("creator: ", creator[0]);
   let write;
   let navTo;
   if (page === "Directors") {
@@ -36,12 +36,16 @@ export default function Details({
     navTo = `/actor/detail/${creator._id}`;
   }
   return (
-    <acticle className="Details">
+    <article className="Details">
       <div>
         {image && <ImgBox image={image} desc={imgdesc} />}
 
         <div className="texts">
           <h1>{title}</h1>
+          <p>
+            <FontAwesomeIcon className="starIcon" icon="fa-solid fa-star" />
+            {rating === 0 ? "aucune notes" : `${rating} / 5`}
+          </p>
           <Link className="link" to={navTo}>
             {write}
           </Link>
@@ -60,6 +64,6 @@ export default function Details({
         </div>
       </div>
       <p className="Desc">{desc}</p>
-    </acticle>
+    </article>
   );
 }

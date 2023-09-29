@@ -31,10 +31,15 @@
           }
         }
       }
-      h1 {
+      h1,
+      p {
         margin-bottom: 10px;
         font-size: 20px;
         color: white;
+      }
+      .starIcon {
+        color: yellow;
+        margin-right: 5px;
       }
     }
     .Desc {

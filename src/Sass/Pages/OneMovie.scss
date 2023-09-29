@@ -31,10 +31,16 @@
           }
         }
       }
-      h1 {
+
+      h1,
+      p {
         margin-bottom: 10px;
         font-size: 20px;
         color: white;
+      }
+      .starIcon {
+        color: yellow;
+        margin-right: 5px;
       }
     }
     .Desc {
@@ -47,6 +53,24 @@
       padding: 8px;
       border-radius: 5px;
       box-shadow: 0px 0px 10px 1px rgb(131, 131, 131);
+    }
+  }
+  .Reviews {
+    margin: 20px 0;
+    padding: 5px;
+    box-sizing: border-box;
+    article {
+      padding: 10px;
+      border-radius: 5px;
+      background-image: url("../../Assets/papierLettre2.jpg");
+      background-size: cover;
+      .message {
+        padding: 10px;
+      }
+      .date {
+        margin-top: 10px;
+        text-align: right;
+      }
     }
   }
 
