@@ -7,17 +7,54 @@ const useUserStore = create((set) => ({
   seeModalForms: false,
   openForms: "login",
   failMessage: null,
+  disconnect: () =>
+    set(() => ({
+      user: null,
+      token: null,
+      seeModalForms: false,
+      openForms: "login",
+      failMessage: null,
+    })),
   changeOpenForms: (nameForm) => set(() => ({ openForms: nameForm })),
   changeTextForm: () => set(() => ({ failMessage: null })),
   setseeModalForms: () =>
     set((state) => ({ seeModalForms: !state.seeModalForms })),
-  open: () => set(() => ({ seeModalForms: true })),
+  open: () => set(() => ({ seeModalForms: true, openForms: "login" })),
   close: () =>
     set(() => ({
       seeModalForms: false,
       failMessage: null,
       openForms: "login",
     })),
+  deleteUser: async () => {
+    const { token } = useUserStore.getState();
+
+    if (!token) {
+      set({
+        failMessage: "Token manquant. Impossible de supprimer l'utilisateur.",
+      });
+      return;
+    }
+
+    try {
+      await axios.delete(`${process.env.REACT_APP_URL}/user/delete`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      set({
+        user: null,
+        token: null,
+        seeModalForms: false,
+        failMessage: null,
+      });
+    } catch (error) {
+      set({
+        failMessage:
+          error.response.data.message || "Erreur lors de la suppression",
+      });
+    }
+  },
   updateUser: async (username, email, password) => {
     const { user, token } = useUserStore.getState();
     const userId = user ? user.id : null;

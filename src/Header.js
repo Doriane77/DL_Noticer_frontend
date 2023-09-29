@@ -11,7 +11,7 @@ function Header() {
   const { seeMenu, invertSeeMenu } = useHeaderStore();
   const { open } = useUserStore();
   const user = useUserStore((s) => s.user);
-  console.log("user: ", user);
+
   return (
     <div className="Header">
       <ImgBox
@@ -46,9 +46,11 @@ function Header() {
           </Link>
         </nav>
         {user ? (
-          <button className="User" onClick={() => open()}>
-            {user.username} ♥
-          </button>
+          <>
+            <button className="User" onClick={() => open()}>
+              {user.username} ♥
+            </button>
+          </>
         ) : (
           <button className="BLogin" onClick={() => open()}>
             <FontAwesomeIcon className="userIcon" icon="fa-solid fa-user" />

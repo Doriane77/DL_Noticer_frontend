@@ -24,11 +24,10 @@ function UpdateForm() {
     close,
     failMessage,
     changeTextForm,
-    changeOpenForms,
+    disconnect,
+    deleteUser,
   } = useUserStore();
-
   const [userName, setUserName] = useState(user.username);
-
   const [email, setEmail] = useState(user.email);
   const [password, setPassword] = useState("");
   const handleSubmit = async (e) => {
@@ -36,9 +35,11 @@ function UpdateForm() {
     changeTextForm();
     updateUser(userName, email, password);
   };
-  const handleDeleteAccount = () => {};
   return (
     <form className="UpdateForm" onSubmit={handleSubmit}>
+      <button className="disconnect" onClick={disconnect}>
+        Déconnection
+      </button>
       <h1>Modifier mon compte</h1>
       <button className="X" type="button" onClick={close}>
         X
@@ -68,7 +69,9 @@ function UpdateForm() {
       <button className="submit" type="submit">
         Se connecter
       </button>
-      <button className="deleteAccount">Supprimer le compte</button>
+      <button className="deleteAccount" onClick={deleteUser}>
+        Supprimer le compte
+      </button>
     </form>
   );
 }
