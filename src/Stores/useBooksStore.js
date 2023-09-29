@@ -1,10 +1,61 @@
 import { create } from "zustand";
 import axios from "axios";
+import useUserStore from "../Stores/useUserStore";
 const useBooksStore = create((set, get) => ({
   books: [],
   searchBook: "",
   currentBook: null,
   searchBooks: (e) => set({ searchBook: e.target.value }),
+  registerReview: async (message, bookId) => {
+    const { user, token } = useUserStore.getState();
+    if (!user || !token) {
+      console.error("Utilisateur non authentifié ou token manquant.");
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_URL}/reviews/register`,
+        {
+          message: message,
+          user: user.id,
+          book: bookId,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+    } catch (error) {
+      console.error("Erreur :", error);
+    }
+  },
+  registerRatingBook: async (value, bookId) => {
+    const { user, token } = useUserStore.getState();
+    if (!user || !token) {
+      console.error("Utilisateur non authentifié ou token manquant.");
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_URL}/rating/register`,
+        {
+          user: user.id,
+          value: value,
+          book: bookId,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+    } catch (error) {
+      console.error("Erreur :", error);
+    }
+  },
   fetchOnebook: async (id) => {
     try {
       const response = await axios.get(
