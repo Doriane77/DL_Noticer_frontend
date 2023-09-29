@@ -6,7 +6,8 @@
   height: 100vh;
   width: 100%;
   top: 0px;
-  .LoginForm {
+  .LoginForm,
+  .RegisterForm {
     @include DisplayCenter;
     position: relative;
     background-image: url("../../Assets/FondFreepik4.jpg");
@@ -17,6 +18,9 @@
     background-color: white;
     height: 50%;
     width: 50%;
+    button {
+      cursor: pointer;
+    }
     .X {
       position: absolute;
       top: 20px;
@@ -27,7 +31,7 @@
       font-weight: 900;
       border: 2px solid white;
       transition: All 0.3s ease-in-out;
-      cursor: pointer;
+
       &:hover {
         border: 2px solid gray;
         color: gray;
@@ -35,7 +39,11 @@
       }
     }
     .error {
+      text-align: center;
+
+      margin: 0 10px;
       margin-bottom: 10px;
+      text-shadow: 2px 2px 3px white;
       color: red;
     }
     input {
@@ -47,7 +55,7 @@
     }
     .submit {
       font-size: 14px;
-      cursor: pointer;
+
       color: white;
       font-weight: 900;
       padding: 8px;
@@ -58,6 +66,22 @@
       transition: background-image 0.3s ease-in-out;
       &:hover {
         background-image: url(../../Assets/BHover.png);
+      }
+    }
+    .changeForm {
+      margin-top: 10px;
+      padding: 3px;
+      border-radius: 5px;
+      color: white;
+      background-color: transparent;
+      border: 1px solid white;
+      text-shadow: 2px 2px 2px black;
+      transition: All 0.3s ease-in-out;
+      &:hover {
+        color: black;
+        // background-color: white;
+        border: 1px solid black;
+        text-shadow: 2px 2px 2px white;
       }
     }
   }
