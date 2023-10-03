@@ -20,6 +20,7 @@ import {
   OneDirector,
   OneBook,
   OneMovie,
+  Admin,
 } from "./Pages/indexPages";
 
 import UserForm from "./Modals/UserForm";
@@ -42,6 +43,7 @@ function App() {
         <Route path="/director/detail/:id" element={<OneDirector />} />
         <Route path="/book/detail/:id" element={<OneBook />} />
         <Route path="/movie/detail/:id" element={<OneMovie />} />
+        <Route path="/auth-admin/" element={<Admin />} />
       </Routes>
       <Footer />
     </Router>

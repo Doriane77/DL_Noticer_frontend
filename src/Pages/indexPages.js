@@ -10,3 +10,4 @@ export { default as OneAuthor } from "./OneAuthor";
 export { default as OneDirector } from "./OneDirector";
 export { default as OneBook } from "./OneBook";
 export { default as OneMovie } from "./OneMovie";
+export { default as Admin } from "./Admin";
