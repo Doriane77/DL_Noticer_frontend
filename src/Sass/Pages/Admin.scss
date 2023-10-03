@@ -14,10 +14,10 @@
     color: white;
     font-size: 30px;
     text-align: center;
+    margin-bottom: 20px;
   }
   h2 {
     font-size: 25px;
-    margin-bottom: 20px;
   }
   .BoxButtons,
   .buttons {
@@ -72,11 +72,13 @@
       width: 200px;
       padding: 5px;
       border: 1px solid white;
+      text-align: center;
     }
     td {
       padding-left: 5px;
     }
   }
+
   .LoginForm,
   form {
     @include DisplayCenter;

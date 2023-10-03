@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useAdminStore from "../../Stores/useAdminStore";
 
 export default function AddAdmin() {
@@ -57,15 +55,15 @@ export default function AddAdmin() {
         <table className="Liste">
           <thead>
             <tr>
-              <th>Username</th>
+              <th style={{ width: "100px" }}>Username</th>
               <th>Email</th>
             </tr>
           </thead>
           <tbody>
             {allAdmin &&
-              allAdmin.map((item, index) => (
-                <tr key={index}>
-                  <td>{item.username}</td>
+              allAdmin.map((item) => (
+                <tr key={item._id}>
+                  <td style={{ width: "100px" }}>{item.username}</td>
                   <td>{item.email}</td>
                 </tr>
               ))}

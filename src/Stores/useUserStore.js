@@ -1,12 +1,15 @@
 import axios from "axios";
 import { create } from "zustand";
+import useAdminStore from "./useAdminStore";
 
 const useUserStore = create((set) => ({
   user: null,
+  users: null,
   token: null,
   seeModalForms: false,
   openForms: "login",
   failMessage: null,
+
   disconnect: () =>
     set(() => ({
       user: null,
@@ -55,6 +58,18 @@ const useUserStore = create((set) => ({
       });
     }
   },
+  allUsers: async () => {
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_URL}/user/all`);
+      set({ users: response.data });
+
+      console.log("response: ", response);
+    } catch (error) {
+      set({
+        failMessage: error?.response?.data?.message,
+      });
+    }
+  },
   updateUser: async (username, email, password) => {
     const { user, token } = useUserStore.getState();
     const userId = user ? user.id : null;
@@ -88,7 +103,7 @@ const useUserStore = create((set) => ({
     } catch (error) {
       set({
         failMessage:
-          error.response.data.message || "Erreur lors de la mise à jour",
+          error?.response?.data?.message || "Erreur lors de la mise à jour",
       });
     }
   },

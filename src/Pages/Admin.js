@@ -4,6 +4,7 @@ import "../Sass/Pages/Admin.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import AddAdmin from "../Contents/Admin/AddAdmin";
 import Users from "../Contents/Admin/Users.js";
+import LoginForm from "../Contents/Admin/LoginForm";
 export default function Admin() {
   const { admin, openForm, changeOpenForms } = useAdminStore();
 
@@ -91,46 +92,5 @@ function AddMovie() {
     <div className="Box">
       <h1>Film</h1>
     </div>
-  );
-}
-
-// function Users() {
-//   return (
-//     <div className="Box">
-//       <h1>Utilisateurs</h1>
-//     </div>
-//   );
-// }
-function LoginForm() {
-  const { login, changeOpenForms, failMessage } = useAdminStore();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    // changeTextForm();
-    login(email, password);
-  };
-  return (
-    <form className="LoginForm" onSubmit={handleSubmit}>
-      <h1>Se Connecter</h1>
-      <input
-        type="email"
-        aria-label="Votre adresse email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Mot de passe"
-        aria-label="Votre mot de passe"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <p className="error">{failMessage}</p>
-      <button className="submit" type="submit">
-        Se connecter
-      </button>
-    </form>
   );
 }
