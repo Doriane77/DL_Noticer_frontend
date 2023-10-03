@@ -1,6 +1,5 @@
 import axios from "axios";
 import { create } from "zustand";
-import useAdminStore from "./useAdminStore";
 
 const useUserStore = create((set) => ({
   user: null,
