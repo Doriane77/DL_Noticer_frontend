@@ -5,6 +5,7 @@ const useAuthorsStore = create((set, get) => ({
   authors: [],
   searchAuthor: "",
   currentAuthor: null,
+  messageForm: null,
   searchAuthors: (e) => set({ searchAuthor: e.target.value }),
   fetchOneAuthor: async (id) => {
     try {
@@ -62,7 +63,7 @@ const useAuthorsStore = create((set, get) => ({
           },
         }
       );
-      console.log("response: ", response);
+      set({ messageForm: "Enregistrer avec succès" });
     } catch (error) {
       console.log("error: ", error);
       set({

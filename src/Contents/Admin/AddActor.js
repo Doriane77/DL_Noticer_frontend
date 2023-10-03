@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
 import FormGenerator from "../../Components/FormGenerator";
 import Liste from "../../Components/Liste";
-import useBooksStore from "../../Stores/useBooksStore";
-import useAuthorsStore from "../../Stores/useAuthorsStore";
 import useMoviesStore from "../../Stores/useMoviesStore";
 import useActorsStore from "../../Stores/useActorsStore";
 
 export default function AddActor() {
   const { movies, fetchAllMovies } = useMoviesStore();
-  const { register } = useActorsStore();
+  const { register, messageForm } = useActorsStore();
   const [formData, setFormData] = useState({});
   const [select, setSelected] = useState([]);
   const fields = [
@@ -51,6 +49,8 @@ export default function AddActor() {
           handleSubmit(formData);
         }}
       >
+        {" "}
+        <p>{messageForm}</p>
         <FormGenerator
           fields={fields}
           handleFieldChange={handleFieldChange}
@@ -62,7 +62,6 @@ export default function AddActor() {
           onSelect={handleSelect}
           selectedItems={select}
         />
-
         <button type="submit">Envoyer</button>
       </form>
     </div>

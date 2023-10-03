@@ -5,6 +5,7 @@ const useActorsStore = create((set, get) => ({
   actors: [],
   searchActor: "",
   currentActor: null,
+  messageForm: null,
   searchActors: (e) => set({ searchActor: e.target.value }),
   fetchOneActor: async (id) => {
     try {
@@ -64,7 +65,7 @@ const useActorsStore = create((set, get) => ({
           },
         }
       );
-      console.log("response: ", response);
+      set({ messageForm: "Enregistrer avec succès" });
     } catch (error) {
       console.log("error: ", error);
       set({

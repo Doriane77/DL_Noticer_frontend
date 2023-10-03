@@ -68,7 +68,7 @@ const useDirectorsStore = create((set, get) => ({
           },
         }
       );
-      set({ messageForm: "Film ajouter avec succès" });
+      set({ messageForm: "Enregistrer avec succès" });
     } catch (error) {
       console.log("error: ", error);
       set({

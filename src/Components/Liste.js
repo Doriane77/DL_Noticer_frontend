@@ -28,6 +28,9 @@ export default function Liste({ listes, onSelect, selectedItems, titleListe }) {
             if (titleListe === "Réalisateurs") {
               write = item.director;
             }
+            if (titleListe === "Autheur") {
+              write = item.author;
+            }
             return (
               <p
                 key={item._id}

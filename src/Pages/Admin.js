@@ -9,6 +9,7 @@ import AddActor from "../Contents/Admin/AddActor.js";
 import AddAuthor from "../Contents/Admin/AddAuthor";
 import AddDirector from "../Contents/Admin/AddDirector";
 import AddMovie from "../Contents/Admin/AddMovie.js";
+import AddBook from "../Contents/Admin/AddBook.js";
 export default function Admin() {
   const { admin, openForm, changeOpenForms } = useAdminStore();
 
@@ -60,14 +61,6 @@ export default function Admin() {
           {openForm === "usersBox" && <Users />}
         </>
       )}
-    </div>
-  );
-}
-
-function AddBook() {
-  return (
-    <div className="Box">
-      <h1>Livre</h1>
     </div>
   );
 }

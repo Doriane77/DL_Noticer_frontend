@@ -6,8 +6,8 @@ import Liste from "../../Components/Liste";
 import useActorsStore from "../../Stores/useActorsStore";
 
 export default function AddDirector() {
-  const { movies, fetchAllMovies, messageForm } = useMoviesStore();
-  const { register } = useDirectorsStore();
+  const { movies, fetchAllMovies } = useMoviesStore();
+  const { register, messageForm } = useDirectorsStore();
   const [formData, setFormData] = useState({});
   const [selectMovie, setSelectedMovie] = useState([]);
   const fields = [

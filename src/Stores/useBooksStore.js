@@ -6,6 +6,7 @@ const useBooksStore = create((set, get) => ({
   books: [],
   searchBook: "",
   currentBook: null,
+  messageForm: null,
   searchBooks: (e) => set({ searchBook: e.target.value }),
   registerReview: async (message, bookId) => {
     const { user, token } = useUserStore.getState();
@@ -99,20 +100,24 @@ const useBooksStore = create((set, get) => ({
       return;
     }
     try {
-      const payload = { author: data.author, image: data.image };
-      if (select && select.length > 0) {
-        payload.books = select;
+      const payload = {
+        title: data.title,
+        summary: data.summary,
+        image: data.image,
+      };
+      if (select && select.authors.length > 0) {
+        payload.author = select.authors;
       }
-      // const response = await axios.post(
-      //   `${process.env.REACT_APP_URL}/book/register`,
-      //   payload,
-      //   {
-      //     headers: {
-      //       Authorization: `Bearer ${token}`,
-      //     },
-      //   }
-      // );
-      // console.log("response: ", response);
+      const response = await axios.post(
+        `${process.env.REACT_APP_URL}/book/register`,
+        payload,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      set({ messageForm: "Enregistrer avec succès" });
     } catch (error) {
       console.log("error: ", error);
       set({

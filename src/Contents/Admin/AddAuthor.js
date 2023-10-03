@@ -6,7 +6,7 @@ import useAuthorsStore from "../../Stores/useAuthorsStore";
 
 export default function AddAuthor() {
   const { books, fetchAllBooks } = useBooksStore();
-  const { register } = useAuthorsStore();
+  const { register, messageForm } = useAuthorsStore();
   const [formData, setFormData] = useState({});
   const [select, setSelected] = useState([]);
   const fields = [
@@ -47,6 +47,7 @@ export default function AddAuthor() {
           handleSubmit(formData);
         }}
       >
+        <p>{messageForm}</p>
         <FormGenerator
           fields={fields}
           handleFieldChange={handleFieldChange}
@@ -58,7 +59,6 @@ export default function AddAuthor() {
           onSelect={handleSelect}
           selectedItems={select}
         />
-
         <button type="submit">Envoyer</button>
       </form>
     </div>
