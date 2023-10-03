@@ -62,8 +62,6 @@ const useUserStore = create((set) => ({
     try {
       const response = await axios.get(`${process.env.REACT_APP_URL}/user/all`);
       set({ users: response.data });
-
-      console.log("response: ", response);
     } catch (error) {
       set({
         failMessage: error?.response?.data?.message,
