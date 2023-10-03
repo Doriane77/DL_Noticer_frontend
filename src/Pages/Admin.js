@@ -5,6 +5,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import AddAdmin from "../Contents/Admin/AddAdmin";
 import Users from "../Contents/Admin/Users.js";
 import LoginForm from "../Contents/Admin/LoginForm";
+import AddActor from "../Contents/Admin/AddActor.js";
+import AddAuthor from "../Contents/Admin/AddAuthor";
+import AddDirector from "../Contents/Admin/AddDirector";
+
 export default function Admin() {
   const { admin, openForm, changeOpenForms } = useAdminStore();
 
@@ -59,27 +63,7 @@ export default function Admin() {
     </div>
   );
 }
-function AddActor() {
-  return (
-    <div className="Box">
-      <h1>Acteur</h1>
-    </div>
-  );
-}
-function AddAuthor() {
-  return (
-    <div className="Box">
-      <h1>Autheur</h1>
-    </div>
-  );
-}
-function AddDirector() {
-  return (
-    <div className="Box">
-      <h1>Réalisateur</h1>
-    </div>
-  );
-}
+
 function AddBook() {
   return (
     <div className="Box">

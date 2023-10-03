@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import axios from "axios";
+import useAdminStore from "./useAdminStore";
 const useDirectorsStore = create((set, get) => ({
   directors: [],
   id_Director: "",
@@ -40,6 +41,39 @@ const useDirectorsStore = create((set, get) => ({
       set({ directors: requete.data });
     } catch (error) {
       console.error("Erreur :", error);
+    }
+  },
+  register: async (data, select) => {
+    const { token } = useAdminStore.getState();
+    if (!token) {
+      set({ failMessage: "Utilisateur non authentifié ou token manquant." });
+      return;
+    }
+    console.log("select: ", select);
+    try {
+      const payload = {
+        director: data.director,
+        image: data.image,
+      };
+      if (select && select.movies.length > 0) {
+        payload.movies = select.movies;
+      }
+
+      const response = await axios.post(
+        `${process.env.REACT_APP_URL}/director/register`,
+        payload,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log("response: ", response);
+    } catch (error) {
+      console.log("error: ", error);
+      set({
+        failMessage: error.response.data.message,
+      });
     }
   },
 }));

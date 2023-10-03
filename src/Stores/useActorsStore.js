@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import axios from "axios";
+import useAdminStore from "./useAdminStore";
 const useActorsStore = create((set, get) => ({
   actors: [],
   searchActor: "",
@@ -37,6 +38,38 @@ const useActorsStore = create((set, get) => ({
       set({ actors: requete.data });
     } catch (error) {
       console.error("Erreur :", error);
+    }
+  },
+  register: async (data, select) => {
+    const { token } = useAdminStore.getState();
+    if (!token) {
+      set({ failMessage: "Utilisateur non authentifié ou token manquant." });
+      return;
+    }
+    try {
+      const payload = {
+        name: data.name,
+        surname: data.surname,
+        image: data.image,
+      };
+      if (select && select.length > 0) {
+        payload.movies = select;
+      }
+      const response = await axios.post(
+        `${process.env.REACT_APP_URL}/actor/register`,
+        payload,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log("response: ", response);
+    } catch (error) {
+      console.log("error: ", error);
+      set({
+        failMessage: error.response.data.message,
+      });
     }
   },
 }));

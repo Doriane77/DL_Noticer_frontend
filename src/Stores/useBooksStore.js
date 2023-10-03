@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import axios from "axios";
 import useUserStore from "../Stores/useUserStore";
+import useAdminStore from "./useAdminStore";
 const useBooksStore = create((set, get) => ({
   books: [],
   searchBook: "",
@@ -88,6 +89,35 @@ const useBooksStore = create((set, get) => ({
       set({ books: requete.data });
     } catch (error) {
       console.error("Erreur :", error);
+    }
+  },
+  register: async (data, select) => {
+    console.log("data,select: ", data, select);
+    const { token } = useAdminStore.getState();
+    if (!token) {
+      set({ failMessage: "Utilisateur non authentifié ou token manquant." });
+      return;
+    }
+    try {
+      const payload = { author: data.author, image: data.image };
+      if (select && select.length > 0) {
+        payload.books = select;
+      }
+      // const response = await axios.post(
+      //   `${process.env.REACT_APP_URL}/book/register`,
+      //   payload,
+      //   {
+      //     headers: {
+      //       Authorization: `Bearer ${token}`,
+      //     },
+      //   }
+      // );
+      // console.log("response: ", response);
+    } catch (error) {
+      console.log("error: ", error);
+      set({
+        failMessage: error.response.data.message,
+      });
     }
   },
 }));
