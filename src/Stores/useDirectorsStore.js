@@ -6,6 +6,7 @@ const useDirectorsStore = create((set, get) => ({
   id_Director: "",
   searchDirector: "",
   currentDirector: null,
+  messageForm: null,
   searchDirectors: (e) => set({ searchDirector: e.target.value }),
   fetchOneDiretor: async (id) => {
     try {
@@ -49,7 +50,6 @@ const useDirectorsStore = create((set, get) => ({
       set({ failMessage: "Utilisateur non authentifié ou token manquant." });
       return;
     }
-    console.log("select: ", select);
     try {
       const payload = {
         director: data.director,
@@ -68,7 +68,7 @@ const useDirectorsStore = create((set, get) => ({
           },
         }
       );
-      console.log("response: ", response);
+      set({ messageForm: "Film ajouter avec succès" });
     } catch (error) {
       console.log("error: ", error);
       set({

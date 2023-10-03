@@ -6,26 +6,18 @@ import Liste from "../../Components/Liste";
 import useActorsStore from "../../Stores/useActorsStore";
 
 export default function AddDirector() {
-  const { movies, fetchAllMovies } = useMoviesStore();
-  const { actors, fetchAllActors } = useActorsStore();
-  const { directors, fetchAllDirectors } = useDirectorsStore();
+  const { movies, fetchAllMovies, messageForm } = useMoviesStore();
   const { register } = useDirectorsStore();
   const [formData, setFormData] = useState({});
   const [selectMovie, setSelectedMovie] = useState([]);
-  const [selectActor, setSelectedActor] = useState([]);
-  const [selectDirector, setSelectedDirector] = useState([]);
   const fields = [
     { name: "director", label: "Titre du film", type: "text" },
     { name: "image", label: "Image url", type: "text" },
   ];
   useEffect(() => {
     fetchAllMovies();
-    fetchAllActors();
-    fetchAllDirectors();
-  }, [fetchAllMovies, fetchAllActors, fetchAllDirectors]);
+  }, [fetchAllMovies]);
   const dataMovie = movies;
-  //   const dataActor = actors;
-  const dataDirector = directors;
 
   const handleFieldChange = (name, value) => {
     setFormData({
@@ -35,7 +27,7 @@ export default function AddDirector() {
   };
 
   const handleSubmit = (data) => {
-    register(data, { movies: selectMovie, directors: selectDirector });
+    register(data, { movies: selectMovie });
   };
   const handleSelectMovie = (clickedItem) => {
     const clickedItemId = clickedItem._id;
@@ -45,22 +37,7 @@ export default function AddDirector() {
       setSelectedMovie([...selectMovie, clickedItemId]);
     }
   };
-  // const handleSelectActor = (clickedItem) => {
-  //   const clickedItemId = clickedItem._id;
-  //   if (selectActor.includes(clickedItemId)) {
-  //     setSelectedActor(selectActor.filter((id) => id !== clickedItemId));
-  //   } else {
-  //     setSelectedActor([...selectActor, clickedItemId]);
-  //   }
-  // };
-  const handleSelectDirector = (clickedItem) => {
-    const clickedItemId = clickedItem._id;
-    if (selectDirector.includes(clickedItemId)) {
-      setSelectedDirector(selectDirector.filter((id) => id !== clickedItemId));
-    } else {
-      setSelectedDirector([...selectDirector, clickedItemId]);
-    }
-  };
+
   return (
     <div className="Box">
       <h1>Réalisateur</h1>
@@ -70,6 +47,7 @@ export default function AddDirector() {
           handleSubmit(formData);
         }}
       >
+        <p>{messageForm}</p>
         <FormGenerator
           fields={fields}
           handleFieldChange={handleFieldChange}
@@ -81,18 +59,7 @@ export default function AddDirector() {
           onSelect={handleSelectMovie}
           selectedItems={selectMovie}
         />
-        {/* <Liste
-          titleListe={"Acteurs"}
-          listes={dataActor}
-          onSelect={handleSelectActor}
-          selectedItems={selectActor}
-        /> */}
-        {/* <Liste
-          titleListe={"Réalisateurs"}
-          listes={dataDirector}
-          onSelect={handleSelectDirector}
-          selectedItems={selectDirector}
-        /> */}
+
         <button type="submit">Envoyer</button>
       </form>
     </div>
