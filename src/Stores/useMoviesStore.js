@@ -27,7 +27,7 @@ const useMoviesStore = create((set, get) => ({
     } catch (error) {
       set({
         failMessage: error?.response?.data?.message,
-        messageForm: null,
+        messageForm: error?.response?.data?.message,
       });
     }
   },
@@ -47,7 +47,6 @@ const useMoviesStore = create((set, get) => ({
       if (select && select.actors.length > 0) {
         payload.actors = select.actors;
       }
-      console.log("select: ", select.directors[0]);
       if (select && select.directors.length > 0) {
         payload.director = select.directors[0];
       }
@@ -62,10 +61,9 @@ const useMoviesStore = create((set, get) => ({
       );
       set({ messageForm: "Film ajouter avec succès" });
     } catch (error) {
-      console.log("error: ", error);
       set({
         failMessage: error?.response?.data?.message,
-        messageForm: null,
+        messageForm: error?.response?.data?.message,
       });
     }
   },
@@ -93,7 +91,7 @@ const useMoviesStore = create((set, get) => ({
     } catch (error) {
       set({
         failMessage: error?.response?.data?.message,
-        messageForm: null,
+        messageForm: error?.response?.data?.message,
       });
     }
   },
@@ -121,7 +119,7 @@ const useMoviesStore = create((set, get) => ({
     } catch (error) {
       set({
         failMessage: error?.response?.data?.message,
-        messageForm: null,
+        messageForm: error?.response?.data?.message,
       });
     }
   },
@@ -134,7 +132,7 @@ const useMoviesStore = create((set, get) => ({
     } catch (error) {
       set({
         failMessage: error?.response?.data?.message,
-        messageForm: null,
+        messageForm: error?.response?.data?.message,
       });
     }
   },
@@ -153,7 +151,7 @@ const useMoviesStore = create((set, get) => ({
     } catch (error) {
       set({
         failMessage: error?.response?.data?.message,
-        messageForm: null,
+        messageForm: error?.response?.data?.message,
       });
     }
   },
@@ -164,7 +162,7 @@ const useMoviesStore = create((set, get) => ({
     } catch (error) {
       set({
         failMessage: error?.response?.data?.message,
-        messageForm: null,
+        messageForm: error?.response?.data?.message,
       });
     }
   },
@@ -197,10 +195,9 @@ const useMoviesStore = create((set, get) => ({
       );
       set({ messageForm: "Film ajouter avec succès" });
     } catch (error) {
-      console.log("error: ", error);
       set({
-        failMessage: error.response.data.message,
-        messageForm: null,
+        failMessage: error?.response?.data?.message,
+        messageForm: error?.response?.data?.message,
       });
     }
   },

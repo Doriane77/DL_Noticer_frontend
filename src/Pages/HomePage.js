@@ -7,7 +7,6 @@ export default function HomePage() {
   const [dataMovies, setDataMovies] = useState([]);
   const close = useHeaderStore((state) => state.close);
 
-  console.log("dataMovies: ", dataMovies);
   useEffect(() => {
     close();
     const fetchMovies = async () => {

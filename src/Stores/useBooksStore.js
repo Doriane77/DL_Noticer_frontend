@@ -14,7 +14,6 @@ const useBooksStore = create((set, get) => ({
       set({ failMessage: "Utilisateur non authentifié ou token manquant." });
       return;
     }
-    console.log("id: ", id);
     try {
       const response = await axios.delete(
         `${process.env.REACT_APP_URL}/book/sup/${id}`,
@@ -26,7 +25,10 @@ const useBooksStore = create((set, get) => ({
       );
       set({ messageForm: "Supprimer avec succès" });
     } catch (error) {
-      console.error("Erreur :", error);
+      set({
+        messageForm: error?.response?.data?.message,
+        failMessage: error.response.data.message,
+      });
     }
   },
   update: async (id, data, select) => {
@@ -43,12 +45,9 @@ const useBooksStore = create((set, get) => ({
         image: data.image,
         summary: data.summary,
       };
-      console.log("select: ", select);
       if (select && select.authors.length > 0) {
-        console.log("la: ");
         payload.author = select.authors;
       } else {
-        console.log("ici: ");
         payload.author = [];
       }
       const response = await axios.put(
@@ -60,11 +59,10 @@ const useBooksStore = create((set, get) => ({
           },
         }
       );
-      console.log("response: ", response);
       set({ messageForm: "Modifier avec succès" });
     } catch (error) {
-      console.log("error: ", error);
       set({
+        messageForm: error?.response?.data?.message,
         failMessage: error.response.data.message,
       });
     }
@@ -91,7 +89,10 @@ const useBooksStore = create((set, get) => ({
         }
       );
     } catch (error) {
-      console.error("Erreur :", error);
+      set({
+        messageForm: error?.response?.data?.message,
+        failMessage: error.response.data.message,
+      });
     }
   },
   registerRatingBook: async (value, bookId) => {
@@ -100,7 +101,6 @@ const useBooksStore = create((set, get) => ({
       console.error("Utilisateur non authentifié ou token manquant.");
       return;
     }
-
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_URL}/rating/register`,
@@ -116,7 +116,10 @@ const useBooksStore = create((set, get) => ({
         }
       );
     } catch (error) {
-      console.error("Erreur :", error);
+      set({
+        messageForm: error?.response?.data?.message,
+        failMessage: error.response.data.message,
+      });
     }
   },
   fetchOnebook: async (id) => {
@@ -126,7 +129,10 @@ const useBooksStore = create((set, get) => ({
       );
       set({ currentBook: response.data });
     } catch (error) {
-      console.error("Erreur :", error);
+      set({
+        messageForm: error?.response?.data?.message,
+        failMessage: error.response.data.message,
+      });
     }
   },
   fetchBooksByTitle: async () => {
@@ -142,7 +148,10 @@ const useBooksStore = create((set, get) => ({
       );
       set({ books: response.data });
     } catch (error) {
-      console.error("Erreur :", error);
+      set({
+        messageForm: error?.response?.data?.message,
+        failMessage: error.response.data.message,
+      });
     }
   },
   fetchAllBooks: async () => {
@@ -150,11 +159,13 @@ const useBooksStore = create((set, get) => ({
       const requete = await axios.get(`${process.env.REACT_APP_URL}/book/all`);
       set({ books: requete.data });
     } catch (error) {
-      console.error("Erreur :", error);
+      set({
+        messageForm: error?.response?.data?.message,
+        failMessage: error.response.data.message,
+      });
     }
   },
   register: async (data, select) => {
-    console.log("data,select: ", data, select);
     const { token } = useAdminStore.getState();
     if (!token) {
       set({ failMessage: "Utilisateur non authentifié ou token manquant." });
@@ -180,8 +191,8 @@ const useBooksStore = create((set, get) => ({
       );
       set({ messageForm: "Enregistrer avec succès" });
     } catch (error) {
-      console.log("error: ", error);
       set({
+        messageForm: error?.response?.data?.message,
         failMessage: error.response.data.message,
       });
     }

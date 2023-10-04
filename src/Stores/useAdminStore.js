@@ -71,18 +71,17 @@ const useAdminStore = create((set, get) => ({
           },
         }
       );
-      console.log("response: ", response);
       set({
         StatusMessage: "Utilisateur créer avec succès !",
         failMessage: null,
       });
     } catch (error) {
-      console.log("error: ", error);
       set({
         StatusMessage: null,
         failMessage:
           error?.response?.data?.message ||
           error?.response?.data?.details[0]?.message,
+        messageForm: error?.response?.data?.message,
       });
     }
   },

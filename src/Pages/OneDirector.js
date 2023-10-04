@@ -47,7 +47,6 @@ export default function OneDirector() {
   };
 
   const handleSubmit = (data) => {
-    console.log("data: ", data);
     update(id, data, { movies: selectMovie });
   };
   const handleSelectMovie = (clickedItem) => {

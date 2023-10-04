@@ -70,8 +70,6 @@ const useUserStore = create((set) => ({
   updateUser: async (username, email, password) => {
     const { user, token } = useUserStore.getState();
     const userId = user ? user.id : null;
-    console.log("userId, token: ", userId, token);
-
     if (!userId || !token) {
       set({ failMessage: "Utilisateur non authentifié ou token manquant." });
       return;
@@ -117,8 +115,8 @@ const useUserStore = create((set) => ({
         seeModalForms: false,
       });
     } catch (error) {
-      console.log("error: ", error);
       set({
+        messageForm: error?.response?.data?.message,
         failMessage: error.response.data.message,
       });
     }

@@ -26,7 +26,6 @@ export default function AddAuthor() {
   };
 
   const handleSubmit = (data) => {
-    console.log("Données du formulaire:", data, select);
     register(data, { select: select });
   };
   const handleSelect = (clickedItem) => {

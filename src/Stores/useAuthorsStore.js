@@ -53,8 +53,8 @@ const useAuthorsStore = create((set, get) => ({
       );
       set({ messageForm: "Modifier avec succès" });
     } catch (error) {
-      console.log("error: ", error);
       set({
+        messageForm: error?.response?.data?.message,
         failMessage: error.response.data.message,
       });
     }
@@ -66,7 +66,10 @@ const useAuthorsStore = create((set, get) => ({
       );
       set({ currentAuthor: response.data });
     } catch (error) {
-      console.error("Erreur :", error);
+      set({
+        messageForm: error?.response?.data?.message,
+        failMessage: error.response.data.message,
+      });
     }
   },
   fetchAuthorsByTitle: async () => {
@@ -82,7 +85,10 @@ const useAuthorsStore = create((set, get) => ({
       );
       set({ authors: response.data });
     } catch (error) {
-      console.error("Erreur :", error);
+      set({
+        messageForm: error?.response?.data?.message,
+        failMessage: error.response.data.message,
+      });
     }
   },
   fetchAllAuthors: async () => {
@@ -92,7 +98,10 @@ const useAuthorsStore = create((set, get) => ({
       );
       set({ authors: requete.data });
     } catch (error) {
-      console.error("Erreur :", error);
+      set({
+        messageForm: error?.response?.data?.message,
+        failMessage: error.response.data.message,
+      });
     }
   },
   register: async (data, select) => {
@@ -117,8 +126,8 @@ const useAuthorsStore = create((set, get) => ({
       );
       set({ messageForm: "Enregistrer avec succès" });
     } catch (error) {
-      console.log("error: ", error);
       set({
+        messageForm: error?.response?.data?.message,
         failMessage: error.response.data.message,
       });
     }

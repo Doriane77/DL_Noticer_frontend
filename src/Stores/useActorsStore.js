@@ -45,7 +45,6 @@ const useActorsStore = create((set, get) => ({
       } else {
         payload.movies = [];
       }
-      console.log("payload: ", payload);
       const response = await axios.put(
         `${process.env.REACT_APP_URL}/actor/update`,
         payload,
@@ -55,12 +54,11 @@ const useActorsStore = create((set, get) => ({
           },
         }
       );
-      console.log("response: ", response);
       set({ messageForm: "Enregistrer avec succès" });
     } catch (error) {
-      console.log("error: ", error);
       set({
         failMessage: error.response.data.message,
+        messageForm: error?.response?.data?.message,
       });
     }
   },
@@ -71,7 +69,10 @@ const useActorsStore = create((set, get) => ({
       );
       set({ currentActor: response.data });
     } catch (error) {
-      console.error("Erreur :", error);
+      set({
+        failMessage: error.response.data.message,
+        messageForm: error?.response?.data?.message,
+      });
     }
   },
   fetchActorsByTitle: async () => {
@@ -87,7 +88,10 @@ const useActorsStore = create((set, get) => ({
       );
       set({ actors: response.data });
     } catch (error) {
-      console.error("Erreur :", error);
+      set({
+        failMessage: error.response.data.message,
+        messageForm: error?.response?.data?.message,
+      });
     }
   },
   fetchAllActors: async () => {
@@ -95,7 +99,10 @@ const useActorsStore = create((set, get) => ({
       const requete = await axios.get(`${process.env.REACT_APP_URL}/actor/all`);
       set({ actors: requete.data });
     } catch (error) {
-      console.error("Erreur :", error);
+      set({
+        failMessage: error.response.data.message,
+        messageForm: error?.response?.data?.message,
+      });
     }
   },
   register: async (data, select) => {
@@ -124,9 +131,9 @@ const useActorsStore = create((set, get) => ({
       );
       set({ messageForm: "Enregistrer avec succès" });
     } catch (error) {
-      console.log("error: ", error);
       set({
         failMessage: error.response.data.message,
+        messageForm: error?.response?.data?.message,
       });
     }
   },

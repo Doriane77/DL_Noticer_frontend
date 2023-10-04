@@ -41,7 +41,6 @@ const useDirectorsStore = create((set, get) => ({
       } else {
         payload.movies = [];
       }
-      console.log("payload: ", payload);
       const response = await axios.put(
         `${process.env.REACT_APP_URL}/director/update`,
         payload,
@@ -53,8 +52,8 @@ const useDirectorsStore = create((set, get) => ({
       );
       set({ messageForm: "Modifier avec succès" });
     } catch (error) {
-      console.log("error: ", error);
       set({
+        messageForm: error?.response?.data?.message,
         failMessage: error.response.data.message,
       });
     }
@@ -66,7 +65,10 @@ const useDirectorsStore = create((set, get) => ({
       );
       set({ currentDirector: response.data });
     } catch (error) {
-      console.error("Erreur :", error);
+      set({
+        messageForm: error?.response?.data?.message,
+        failMessage: error.response.data.message,
+      });
     }
   },
   fetchDirectorsByTitle: async () => {
@@ -82,7 +84,10 @@ const useDirectorsStore = create((set, get) => ({
       );
       set({ directors: response.data });
     } catch (error) {
-      console.error("Erreur :", error);
+      set({
+        messageForm: error?.response?.data?.message,
+        failMessage: error.response.data.message,
+      });
     }
   },
   fetchAllDirectors: async () => {
@@ -92,7 +97,10 @@ const useDirectorsStore = create((set, get) => ({
       );
       set({ directors: requete.data });
     } catch (error) {
-      console.error("Erreur :", error);
+      set({
+        messageForm: error?.response?.data?.message,
+        failMessage: error.response.data.message,
+      });
     }
   },
   register: async (data, select) => {
@@ -121,8 +129,8 @@ const useDirectorsStore = create((set, get) => ({
       );
       set({ messageForm: "Enregistrer avec succès" });
     } catch (error) {
-      console.log("error: ", error);
       set({
+        messageForm: error?.response?.data?.message,
         failMessage: error.response.data.message,
       });
     }
