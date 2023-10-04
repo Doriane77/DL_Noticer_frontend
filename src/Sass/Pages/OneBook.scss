@@ -1,6 +1,8 @@
 @import "../Mixins/SectionStyle.scss";
 @import "../Mixins/ArticlesOne.scss";
 @import "../Variables.scss";
+@import "../Mixins/FormStyle.scss";
+@import "../Mixins/supp.scss";
 .OneBook {
   .Details {
     > div {
@@ -103,7 +105,13 @@
       }
     }
   }
+  .sup {
+    @include supStyle;
+  }
 
+  .upadateForm {
+    @include FormStyle;
+  }
   .Reviews {
     margin: 20px 0;
     padding: 5px;

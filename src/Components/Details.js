@@ -15,25 +15,36 @@ export default function Details({
 }) {
   let write;
   let navTo;
+
   if (page === "Directors") {
-    write = creator.director;
-    navTo = `/director/detail/${creator._id}`;
+    if (creator) {
+      write = creator.director || " ";
+      navTo = `/director/detail/${creator._id}`;
+    }
   }
   if (page === "Authors") {
-    write = creator[0].author;
-    navTo = `/author/detail/${creator[0]._id}`;
+    if (creator && creator.length > 0 && creator[0]) {
+      write = creator[0].author || " ";
+      navTo = `/author/detail/${creator[0]._id}`;
+    }
   }
   if (page === "Books") {
-    write = creator.title;
-    navTo = `/book/detail/${creator._id}`;
+    if (creator) {
+      write = creator.title || " ";
+      navTo = `/book/detail/${creator._id}`;
+    }
   }
   if (page === "Movies") {
-    write = creator.title;
-    navTo = `/movie/detail/${creator._id}`;
+    if (creator) {
+      write = creator.title || " ";
+      navTo = `/movie/detail/${creator._id}`;
+    }
   }
   if (page === "Actors") {
-    write = creator.name + " " + creator.surname;
-    navTo = `/actor/detail/${creator._id}`;
+    if (creator) {
+      write = (creator.name || "") + " " + (creator.surname || "");
+      navTo = `/actor/detail/${creator._id}`;
+    }
   }
   return (
     <article className="Details">

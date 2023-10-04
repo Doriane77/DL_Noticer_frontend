@@ -5,20 +5,77 @@ import useUserStore from "../Stores/useUserStore";
 import Details from "../Components/Details";
 import "../Sass/Pages/OneBook.scss";
 import Reviews from "../Components/Reviews";
+import AdminButton from "../Components/AdminButton";
+import FormGenerator from "../Components/FormGenerator";
+import Liste from "../Components/Liste";
+import useAuthorsStore from "../Stores/useAuthorsStore";
 
 export default function OneBook() {
   const { id } = useParams();
-  const fetchOnebook = useBooksStore((state) => state.fetchOnebook);
-  const currentBook = useBooksStore((state) => state.currentBook);
-  const registerRatingBook = useBooksStore((s) => s.registerRatingBook);
-  const registerReview = useBooksStore((s) => s.registerReview);
+  const { authors, fetchAllAuthors } = useAuthorsStore();
 
+  const {
+    update,
+    supprimer,
+    messageForm,
+    registerReview,
+    registerRatingBook,
+    fetchOnebook,
+    currentBook,
+  } = useBooksStore();
   const user = useUserStore((s) => s.user);
 
   const [newReviews, setNewReviews] = useState("");
   const [rating, setRating] = useState(0);
   const [message, setMessage] = useState("");
 
+  // update
+  const [formData, setFormData] = useState({});
+  const [selectAuthor, setSelectedAuthor] = useState([]);
+  const fields = [
+    { name: "title", label: "Titre du Livre", type: "text" },
+    { name: "summary", label: "Résumer", type: "text" },
+    { name: "image", label: "Image url", type: "text" },
+  ];
+  useEffect(() => {
+    fetchAllAuthors();
+  }, [fetchAllAuthors]);
+  useEffect(() => {
+    let tab = [];
+    if (currentBook) {
+      const { image, title, summary } = currentBook;
+      setFormData({ title, image, summary });
+    }
+    if (currentBook && currentBook.author) {
+      for (let i = 0; i < currentBook.author.length; i++) {
+        tab.push(currentBook.author[i]._id);
+      }
+    }
+    setSelectedAuthor(tab);
+  }, [currentBook]);
+  const dataAuthors = authors;
+  const handleFieldChange = (name, value) => {
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmitModif = (data) => {
+    console.log("data: ", data);
+    update(id, data, { authors: selectAuthor });
+  };
+
+  const handleSelectAuthor = (clickedItem) => {
+    const clickedItemId = clickedItem._id;
+    if (selectAuthor.includes(clickedItemId)) {
+      setSelectedAuthor(selectAuthor.filter((id) => id !== clickedItemId));
+    } else {
+      setSelectedAuthor([...selectAuthor, clickedItemId]);
+    }
+  };
+
+  // deuxième formulaire
   useEffect(() => {
     fetchOnebook(id);
   }, [id, fetchOnebook]);
@@ -39,6 +96,32 @@ export default function OneBook() {
   }
   return (
     <div className="OneBook">
+      <button className="sup" onClick={() => supprimer(id)}>
+        Supprimer
+      </button>
+      <form
+        className="upadateForm"
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSubmitModif(formData);
+        }}
+      >
+        <p className="message">{messageForm}</p>
+        <FormGenerator
+          fields={fields}
+          handleFieldChange={handleFieldChange}
+          formData={formData}
+        />
+
+        <Liste
+          titleListe={"Autheur"}
+          listes={dataAuthors}
+          onSelect={handleSelectAuthor}
+          selectedItems={selectAuthor}
+        />
+
+        <button type="submit">Envoyer</button>
+      </form>
       <Details
         image={currentBook.image}
         imgdesc={currentBook.title}

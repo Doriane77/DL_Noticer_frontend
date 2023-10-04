@@ -28,7 +28,6 @@ export default function AddActor() {
   };
 
   const handleSubmit = (data) => {
-    console.log("Données du formulaire:", data, select);
     register(data, { select: select });
   };
   const handleSelect = (clickedItem) => {
@@ -49,7 +48,6 @@ export default function AddActor() {
           handleSubmit(formData);
         }}
       >
-        {" "}
         <p>{messageForm}</p>
         <FormGenerator
           fields={fields}

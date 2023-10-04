@@ -1,5 +1,7 @@
 @import "../Mixins/SectionStyle.scss";
 @import "../Mixins/ArticlesOne.scss";
+@import "../Mixins/FormStyle.scss";
+@import "../Mixins/supp.scss";
 .OneAuthor {
   > article {
     display: flex;
@@ -8,6 +10,12 @@
     padding: 0 30px;
     margin-bottom: 30px;
     @include ArticlesOne;
+  }
+  .sup {
+    @include supStyle;
+  }
+  form {
+    @include FormStyle;
   }
 
   @include SectionStyle;

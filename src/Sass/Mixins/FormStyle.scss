@@ -1,0 +1,67 @@
+// @include FormStyle
+
+@mixin FormStyle {
+  @include DisplayCenter;
+  flex-direction: column;
+  padding: 20px;
+  border: 2px dashed white;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  h1,
+  input,
+  button {
+    margin-bottom: 20px;
+  }
+  button {
+    cursor: pointer;
+  }
+  input {
+    background-color: white;
+    padding: 5px;
+    font-size: 15px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  .Select {
+    display: flex;
+    width: 100%;
+    margin-bottom: 10px;
+    color: white;
+    p {
+      margin-right: 5px;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+    .boxListes {
+      height: 100px;
+      overflow: auto;
+      flex: 1;
+      p {
+        background-color: transparent;
+        margin-bottom: 1px;
+        padding: 2px 10px;
+        color: white;
+        border: 1px solid white;
+      }
+    }
+  }
+  .message {
+    color: white;
+    margin-bottom: 10px;
+  }
+  .error {
+    text-align: center;
+    margin: 0 10px;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 3px black;
+    color: red;
+  }
+  .submit {
+    margin: 0 auto;
+    color: black;
+    background-color: transparent;
+    &:hover {
+      border: 1px solid white;
+    }
+  }
+}

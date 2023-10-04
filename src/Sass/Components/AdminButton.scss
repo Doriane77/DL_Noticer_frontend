@@ -1,0 +1,32 @@
+@import "../Mixins/Display.scss";
+.AdminButton {
+  margin-bottom: 30px;
+  @include DisplayCenter;
+  flex-direction: column;
+  .message {
+    color: white;
+    margin-bottom: 10px;
+  }
+
+  min-width: 300px;
+  @include DisplayCenter;
+
+  button {
+    cursor: pointer;
+    font-size: 18px;
+    padding: 5px 20px;
+    border-radius: 5px;
+    transition: all 1s ease;
+  }
+
+  .sup {
+    color: white;
+    background-color: rgb(127, 18, 18);
+    margin-bottom: 20px;
+    &:hover {
+      border: 1px solid red;
+      background-color: transparent;
+      color: red;
+    }
+  }
+}
