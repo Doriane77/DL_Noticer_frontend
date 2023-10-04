@@ -7,9 +7,10 @@ import "../Sass/Pages/OneDirector.scss";
 import FormGenerator from "../Components/FormGenerator";
 import Liste from "../Components/Liste";
 import useMoviesStore from "../Stores/useMoviesStore";
+import useAdminStore from "../Stores/useAdminStore";
 export default function OneDirector() {
   const { id } = useParams();
-
+  const { admin } = useAdminStore();
   const { movies, fetchAllMovies } = useMoviesStore();
   const { update, supprimer, messageForm, currentDirector, fetchOneDiretor } =
     useDirectorsStore();
@@ -71,31 +72,36 @@ export default function OneDirector() {
   return (
     <div className="OneDirector">
       <h2>Réalisateur</h2>
-      <form
-        className="upadateForm"
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleSubmit(formData);
-        }}
-      >
-        <p className="Message">{messageForm}</p>
-        <FormGenerator
-          fields={fields}
-          handleFieldChange={handleFieldChange}
-          formData={formData}
-        />
-        <Liste
-          titleListe={"Films"}
-          listes={dataMovie}
-          onSelect={handleSelectMovie}
-          selectedItems={selectMovie}
-        />
+      {admin && (
+        <>
+          <form
+            className="upadateForm"
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleSubmit(formData);
+            }}
+          >
+            <p className="Message">{messageForm}</p>
+            <FormGenerator
+              fields={fields}
+              handleFieldChange={handleFieldChange}
+              formData={formData}
+            />
+            <Liste
+              titleListe={"Films"}
+              listes={dataMovie}
+              onSelect={handleSelectMovie}
+              selectedItems={selectMovie}
+            />
 
-        <button type="submit">Envoyer</button>
-      </form>
-      <button className="sup" onClick={() => supprimer(id)}>
-        Supprimer
-      </button>
+            <button type="submit">Envoyer</button>
+          </form>
+          <button className="sup" onClick={() => supprimer(id)}>
+            Supprimer
+          </button>
+        </>
+      )}
+
       <ArticlesOne
         image={currentDirector.image}
         imgdesc={currentDirector.director}

@@ -10,9 +10,11 @@ import FormGenerator from "../Components/FormGenerator";
 import Liste from "../Components/Liste";
 import useActorsStore from "../Stores/useActorsStore";
 import useDirectorsStore from "../Stores/useDirectorsStore";
+import useAdminStore from "../Stores/useAdminStore";
 export default function OneMovie() {
   const { id } = useParams();
 
+  const { admin } = useAdminStore();
   const user = useUserStore((s) => s.user);
 
   const [newReviews, setNewReviews] = useState("");
@@ -111,37 +113,42 @@ export default function OneMovie() {
   return (
     <div className="OneMovie">
       <h2>Films</h2>
-      <form
-        className="upadateForm"
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleSubmiUpdate(formData);
-        }}
-      >
-        <p className="Message">{messageForm}</p>
-        <FormGenerator
-          fields={fields}
-          handleFieldChange={handleFieldChange}
-          formData={formData}
-        />
+      {admin && (
+        <>
+          <form
+            className="upadateForm"
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleSubmiUpdate(formData);
+            }}
+          >
+            <p className="Message">{messageForm}</p>
+            <FormGenerator
+              fields={fields}
+              handleFieldChange={handleFieldChange}
+              formData={formData}
+            />
 
-        <Liste
-          titleListe={"Acteurs"}
-          listes={dataActor}
-          onSelect={handleSelectActor}
-          selectedItems={selectActor}
-        />
-        <Liste
-          titleListe={"Réalisateurs"}
-          listes={dataDirector}
-          onSelect={handleSelectDirector}
-          selectedItems={selectDirector}
-        />
-        <button type="submit">Envoyer</button>
-      </form>
-      <button className="sup" onClick={() => supprimer(id)}>
-        Supprimer
-      </button>
+            <Liste
+              titleListe={"Acteurs"}
+              listes={dataActor}
+              onSelect={handleSelectActor}
+              selectedItems={selectActor}
+            />
+            <Liste
+              titleListe={"Réalisateurs"}
+              listes={dataDirector}
+              onSelect={handleSelectDirector}
+              selectedItems={selectDirector}
+            />
+            <button type="submit">Envoyer</button>
+          </form>
+          <button className="sup" onClick={() => supprimer(id)}>
+            Supprimer
+          </button>
+        </>
+      )}
+
       <Details
         image={currentMovie.image}
         imgdesc={currentMovie.title}

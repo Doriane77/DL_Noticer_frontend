@@ -9,11 +9,12 @@ import AdminButton from "../Components/AdminButton";
 import FormGenerator from "../Components/FormGenerator";
 import Liste from "../Components/Liste";
 import useAuthorsStore from "../Stores/useAuthorsStore";
+import useAdminStore from "../Stores/useAdminStore";
 
 export default function OneBook() {
   const { id } = useParams();
   const { authors, fetchAllAuthors } = useAuthorsStore();
-
+  const { admin } = useAdminStore();
   const {
     update,
     supprimer,
@@ -96,32 +97,37 @@ export default function OneBook() {
   return (
     <div className="OneBook">
       <h2>Livre</h2>
-      <form
-        className="upadateForm"
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleSubmitModif(formData);
-        }}
-      >
-        <p className="message">{messageForm}</p>
-        <FormGenerator
-          fields={fields}
-          handleFieldChange={handleFieldChange}
-          formData={formData}
-        />
+      {admin && (
+        <>
+          <form
+            className="upadateForm"
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleSubmitModif(formData);
+            }}
+          >
+            <p className="message">{messageForm}</p>
+            <FormGenerator
+              fields={fields}
+              handleFieldChange={handleFieldChange}
+              formData={formData}
+            />
 
-        <Liste
-          titleListe={"Autheur"}
-          listes={dataAuthors}
-          onSelect={handleSelectAuthor}
-          selectedItems={selectAuthor}
-        />
+            <Liste
+              titleListe={"Autheur"}
+              listes={dataAuthors}
+              onSelect={handleSelectAuthor}
+              selectedItems={selectAuthor}
+            />
 
-        <button type="submit">Envoyer</button>
-      </form>
-      <button className="sup" onClick={() => supprimer(id)}>
-        Supprimer
-      </button>
+            <button type="submit">Envoyer</button>
+          </form>
+          <button className="sup" onClick={() => supprimer(id)}>
+            Supprimer
+          </button>
+        </>
+      )}
+
       <Details
         image={currentBook.image}
         imgdesc={currentBook.title}

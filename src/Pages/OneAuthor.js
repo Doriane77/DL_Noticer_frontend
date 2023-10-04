@@ -7,9 +7,10 @@ import ArticlesOne from "../Components/ArticlesOne";
 import useBooksStore from "../Stores/useBooksStore";
 import FormGenerator from "../Components/FormGenerator";
 import Liste from "../Components/Liste";
+import useAdminStore from "../Stores/useAdminStore";
 export default function OneAuthor() {
   const { id } = useParams();
-
+  const { admin } = useAdminStore();
   const { supprimer, currentAuthor, fetchOneAuthor, update, messageForm } =
     useAuthorsStore();
   const { books, fetchAllBooks } = useBooksStore();
@@ -69,30 +70,34 @@ export default function OneAuthor() {
   }
   return (
     <div className="OneAuthor">
-      <button className="sup" onClick={() => supprimer(id)}>
-        Supprimer
-      </button>
-
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleSubmit(formData);
-        }}
-      >
-        <p className="message">{messageForm}</p>
-        <FormGenerator
-          fields={fields}
-          handleFieldChange={handleFieldChange}
-          formData={formData}
-        />
-        <Liste
-          titleListe={"Livre"}
-          listes={dataBooks}
-          onSelect={handleSelect}
-          selectedItems={select}
-        />
-        <button type="submit">Modifier</button>
-      </form>
+      <h2>Autheur</h2>
+      {admin && (
+        <>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleSubmit(formData);
+            }}
+          >
+            <p className="message">{messageForm}</p>
+            <FormGenerator
+              fields={fields}
+              handleFieldChange={handleFieldChange}
+              formData={formData}
+            />
+            <Liste
+              titleListe={"Livre"}
+              listes={dataBooks}
+              onSelect={handleSelect}
+              selectedItems={select}
+            />
+            <button type="submit">Modifier</button>
+          </form>
+          <button className="sup" onClick={() => supprimer(id)}>
+            Supprimer
+          </button>
+        </>
+      )}
 
       <ArticlesOne
         image={currentAuthor.image}

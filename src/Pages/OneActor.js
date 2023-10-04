@@ -7,8 +7,10 @@ import Sections from "../Components/Sections";
 import useMoviesStore from "../Stores/useMoviesStore";
 import FormGenerator from "../Components/FormGenerator";
 import Liste from "../Components/Liste";
+import useAdminStore from "../Stores/useAdminStore";
 export default function OneActor() {
   const { id } = useParams();
+  const { admin } = useAdminStore();
 
   const { movies, fetchAllMovies } = useMoviesStore();
   const { update, supprimer, fetchOneActor, currentActor, messageForm } =
@@ -73,30 +75,35 @@ export default function OneActor() {
   return (
     <div className="OneActor">
       <h2>Acteur</h2>
-      <form
-        className="upadateForm"
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleSubmit(formData);
-        }}
-      >
-        <p className="Message">{messageForm}</p>
-        <FormGenerator
-          fields={fields}
-          handleFieldChange={handleFieldChange}
-          formData={formData}
-        />
-        <Liste
-          titleListe={"Films"}
-          listes={dataMovie}
-          onSelect={handleSelect}
-          selectedItems={select}
-        />
-        <button type="submit">Envoyer</button>
-      </form>
-      <button className="sup" onClick={() => supprimer(id)}>
-        Supprimer
-      </button>
+      {admin && (
+        <>
+          <form
+            className="upadateForm"
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleSubmit(formData);
+            }}
+          >
+            <p className="Message">{messageForm}</p>
+            <FormGenerator
+              fields={fields}
+              handleFieldChange={handleFieldChange}
+              formData={formData}
+            />
+            <Liste
+              titleListe={"Films"}
+              listes={dataMovie}
+              onSelect={handleSelect}
+              selectedItems={select}
+            />
+            <button type="submit">Envoyer</button>
+          </form>
+          <button className="sup" onClick={() => supprimer(id)}>
+            Supprimer
+          </button>
+        </>
+      )}
+
       <ArticlesOne
         image={currentActor.image}
         imgdesc={currentActor.name + " " + currentActor.surname}
