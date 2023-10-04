@@ -8,6 +8,67 @@ const useMoviesStore = create((set, get) => ({
   currentMovie: null,
   messageForm: null,
   searchMovies: (e) => set({ searchMovie: e.target.value }),
+  supprimer: async (id) => {
+    const { token } = useAdminStore.getState();
+    if (!token) {
+      set({ failMessage: "Utilisateur non authentifié ou token manquant." });
+      return;
+    }
+    try {
+      const response = await axios.delete(
+        `${process.env.REACT_APP_URL}/movie/sup/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      set({ messageForm: "Supprimer avec succès" });
+    } catch (error) {
+      set({
+        failMessage: error?.response?.data?.message,
+        messageForm: null,
+      });
+    }
+  },
+  update: async (id, data, select) => {
+    const { token } = useAdminStore.getState();
+    if (!token) {
+      set({ failMessage: "Utilisateur non authentifié ou token manquant." });
+      return;
+    }
+    try {
+      const payload = {
+        id: id,
+        title: data.title,
+        synopsis: data.synopsis,
+        image: data.image,
+      };
+      if (select && select.actors.length > 0) {
+        payload.actors = select.actors;
+      }
+      console.log("select: ", select.directors[0]);
+      if (select && select.directors.length > 0) {
+        payload.director = select.directors[0];
+      }
+      const response = await axios.put(
+        `${process.env.REACT_APP_URL}/movie/update`,
+        payload,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      set({ messageForm: "Film ajouter avec succès" });
+    } catch (error) {
+      console.log("error: ", error);
+      set({
+        failMessage: error?.response?.data?.message,
+        messageForm: null,
+      });
+    }
+  },
   registerReview: async (message, movieId) => {
     const { user, token } = useUserStore.getState();
     if (!user || !token) {
@@ -30,7 +91,10 @@ const useMoviesStore = create((set, get) => ({
         }
       );
     } catch (error) {
-      console.error("Erreur :", error);
+      set({
+        failMessage: error?.response?.data?.message,
+        messageForm: null,
+      });
     }
   },
   registerRatingMovie: async (value, movieId) => {
@@ -55,7 +119,10 @@ const useMoviesStore = create((set, get) => ({
         }
       );
     } catch (error) {
-      console.error("Erreur :", error);
+      set({
+        failMessage: error?.response?.data?.message,
+        messageForm: null,
+      });
     }
   },
   fetchOneMovie: async (id) => {
@@ -65,7 +132,10 @@ const useMoviesStore = create((set, get) => ({
       );
       set({ currentMovie: response.data });
     } catch (error) {
-      console.error("Erreur :", error);
+      set({
+        failMessage: error?.response?.data?.message,
+        messageForm: null,
+      });
     }
   },
   fetchMoviesByTitle: async () => {
@@ -81,7 +151,10 @@ const useMoviesStore = create((set, get) => ({
       );
       set({ movies: response.data });
     } catch (error) {
-      console.error("Erreur :", error);
+      set({
+        failMessage: error?.response?.data?.message,
+        messageForm: null,
+      });
     }
   },
   fetchAllMovies: async () => {
@@ -89,7 +162,10 @@ const useMoviesStore = create((set, get) => ({
       const requete = await axios.get(`${process.env.REACT_APP_URL}/movie/all`);
       set({ movies: requete.data });
     } catch (error) {
-      console.error("Erreur :", error);
+      set({
+        failMessage: error?.response?.data?.message,
+        messageForm: null,
+      });
     }
   },
   register: async (data, select) => {

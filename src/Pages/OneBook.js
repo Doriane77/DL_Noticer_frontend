@@ -62,7 +62,6 @@ export default function OneBook() {
   };
 
   const handleSubmitModif = (data) => {
-    console.log("data: ", data);
     update(id, data, { authors: selectAuthor });
   };
 
@@ -96,9 +95,7 @@ export default function OneBook() {
   }
   return (
     <div className="OneBook">
-      <button className="sup" onClick={() => supprimer(id)}>
-        Supprimer
-      </button>
+      <h2>Livre</h2>
       <form
         className="upadateForm"
         onSubmit={(e) => {
@@ -122,6 +119,9 @@ export default function OneBook() {
 
         <button type="submit">Envoyer</button>
       </form>
+      <button className="sup" onClick={() => supprimer(id)}>
+        Supprimer
+      </button>
       <Details
         image={currentBook.image}
         imgdesc={currentBook.title}
@@ -174,7 +174,6 @@ export default function OneBook() {
           </form>
         </>
       )}
-
       <Reviews reviews={currentBook.reviews} />
     </div>
   );

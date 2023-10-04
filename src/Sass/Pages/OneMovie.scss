@@ -1,6 +1,8 @@
 @import "../Mixins/SectionStyle.scss";
 @import "../Mixins/ArticlesOne.scss";
 @import "../Variables.scss";
+@import "../Mixins/FormStyle.scss";
+@import "../Mixins/supp.scss";
 .OneMovie {
   .Details {
     > div {
@@ -55,8 +57,14 @@
       box-shadow: 0px 0px 10px 1px rgb(131, 131, 131);
     }
   }
+  h2 {
+    font-size: 20px;
+    color: white;
+    margin-bottom: 10px;
+  }
   .Message {
-    font-size: 25px;
+    font-size: 17px;
+    margin-bottom: 10px;
     color: white;
     margin-top: 10px;
     text-align: center;
@@ -129,6 +137,12 @@
       }
     }
   }
+  .sup {
+    @include supStyle;
+  }
 
+  .upadateForm {
+    @include FormStyle;
+  }
   @include SectionStyle;
 }

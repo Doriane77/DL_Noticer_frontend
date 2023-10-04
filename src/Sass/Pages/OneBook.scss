@@ -4,6 +4,10 @@
 @import "../Mixins/FormStyle.scss";
 @import "../Mixins/supp.scss";
 .OneBook {
+  h1 {
+    font-size: 20px;
+    color: white;
+  }
   .Details {
     > div {
       display: flex;
@@ -57,10 +61,11 @@
     }
   }
   .Message {
-    font-size: 25px;
+    font-size: 15px;
     color: white;
     margin-top: 10px;
     text-align: center;
+    margin-bottom: 10px;
   }
   label {
     background-color: red;
