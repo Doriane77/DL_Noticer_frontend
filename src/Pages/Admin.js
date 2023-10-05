@@ -11,10 +11,15 @@ import AddDirector from "../Contents/Admin/AddDirector";
 import AddMovie from "../Contents/Admin/AddMovie.js";
 import AddBook from "../Contents/Admin/AddBook.js";
 export default function Admin() {
-  const { admin, openForm, changeOpenForms } = useAdminStore();
+  const { admin, openForm, changeOpenForms, disconnect } = useAdminStore();
 
   return (
     <div className="Admin">
+      {admin && (
+        <button className="disconnect" onClick={disconnect}>
+          Se Deconnecter
+        </button>
+      )}
       {admin === null ? (
         <LoginForm />
       ) : (
@@ -49,7 +54,6 @@ export default function Admin() {
           </button>
         </div>
       )}
-
       {admin && (
         <>
           {openForm === "AdminBox" && <AddAdmin />}

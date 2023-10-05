@@ -1,4 +1,5 @@
 @import "../Mixins/Display.scss";
+@import "../Mixins/supp.scss";
 .Admin {
   min-height: 71vh;
   background-image: url("../../Assets/FondFreepik.jpg");
@@ -6,6 +7,9 @@
   @include DisplayCenter;
   flex-direction: column;
   padding: 40px 0;
+  .disconnect {
+    @include supStyle;
+  }
   button {
     cursor: pointer;
   }

@@ -10,7 +10,14 @@ const useAdminStore = create((set, get) => ({
   StatusMessage: null,
   changeTextForm: () => set(() => ({ failMessage: null, StatusMessage: null })),
   changeOpenForms: (nameForm) => set(() => ({ openForm: nameForm })),
-  disconnect: () => set({ admin: null, token: null }),
+  disconnect: () =>
+    set({
+      admin: null,
+      token: null,
+      failMessage: null,
+      StatusMessage: null,
+      openForm: "login",
+    }),
   login: async (email, password) => {
     try {
       const response = await axios.post(
