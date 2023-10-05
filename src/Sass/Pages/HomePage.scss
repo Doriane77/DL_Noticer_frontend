@@ -1,0 +1,50 @@
+@import "../Mixins/Display.scss";
+@keyframes moveBackground {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 0%;
+  }
+}
+
+.HomePage {
+  padding: 2rem;
+  text-align: center; // Ajouté pour centrer tout le texte
+  @include DisplayCenter;
+  background-image: url("../../Assets/BHover.png");
+  background-size: cover;
+  animation: moveBackground 30s linear infinite;
+  flex-direction: column;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  h1 {
+    font-size: 40px;
+    margin-bottom: 3rem;
+    font-weight: 900;
+    color: wheat;
+  }
+
+  h2 {
+    color: wheat;
+    font-size: 30px;
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle {
+    font-size: 18px;
+
+    // color: #333;
+    margin-bottom: 1rem;
+  }
+
+  .home-section {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+
+    p {
+      font-size: 18px;
+      line-height: 1.5;
+    }
+  }
+}

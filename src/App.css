@@ -1,4 +1,11 @@
 .App {  background-color: #282c34;
 
 }
-
+@font-face {
+    font-family: "Poppins";
+    src: url("./Fonts//Poppins.ttf") format("truetype");
+  }
+  @font-face {
+    font-family: "Roboto";
+    src: url("./Fonts/Roboto.ttf") format("truetype");
+  }
