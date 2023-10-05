@@ -11,13 +11,6 @@ export default function Footer() {
         navTo={"/"}
       />
       <p>Lollia Doriane - 2023 - </p>
-      <p>
-        Crédit:
-        <a href="https://fr.freepik.com/vecteurs-libre/lignes-raccordement-reseau-fond-points_2302165.htm#query=fond%20violet%20bleu&position=25&from_view=keyword&track=ais">
-          Image de kjpargeter
-        </a>
-        sur Freepik
-      </p>
     </div>
   );
 }
