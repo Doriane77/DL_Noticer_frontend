@@ -55,12 +55,12 @@ function Header() {
           </button>
         )}
 
-        {admin && (
+        {admin && !user && (
           <button className="User" onClick={() => navigate("/auth-admin")}>
             {admin.username} ♥
           </button>
         )}
-        {user && !admin && (
+        {!user && !admin && (
           <button className="BLogin" onClick={() => open()}>
             <FontAwesomeIcon className="userIcon" icon="fa-solid fa-user" />
             <p>LOGIN</p>
