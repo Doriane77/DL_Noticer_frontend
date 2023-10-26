@@ -67,7 +67,7 @@ function UpdateForm() {
       />
       <p className="error">{failMessage}</p>
       <button className="submit" type="submit">
-        Se connecter
+        Enregistrer
       </button>
       <button className="deleteAccount" onClick={deleteUser}>
         Supprimer le compte
