@@ -1,3 +1,7 @@
+# Route administrateur
+
+/auth-admin
+
 # AJouter le premier administrateur
 
 Pour ajouter le premier administrateur dans MongoDB, suivez ces étapes :

@@ -113,7 +113,7 @@ function LoginForm() {
         className="changeForm"
         onClick={() => changeOpenForms("register")}
       >
-        Pas de compte ? S'enregistrer{" "}
+        Pas de compte ? S'enregistrer
       </button>
     </form>
   );
