@@ -1,3 +1,30 @@
+# AJouter le premier administrateur
+
+Pour ajouter le premier administrateur dans MongoDB, suivez ces étapes :
+
+1.  creer une database Noticer
+    OU
+    use Noticer
+2.  créer une collection admins
+    OU
+    db.createCollection("admins")
+3.  add data -> insert document
+    {
+    "username": "admin",
+    "email": "admin@gmail.com",
+    "password": "$2b$10$qppmq7V9dFTYvRDFjE97ku3luyOaymcxgJVAr.ZB4QXvdyjNetP.i"
+    }
+
+    OU
+
+    db.admins.insert({
+    "username": "admin",
+    "email": "admin@gmail.com",
+    "password": "$2b$10$qppmq7V9dFTYvRDFjE97ku3luyOaymcxgJVAr.ZB4QXvdyjNetP.i"
+    })
+
+Le mot de passe serra admin
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
