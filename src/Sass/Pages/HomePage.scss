@@ -10,7 +10,7 @@
 
 .HomePage {
   padding: 2rem;
-  text-align: center; // Ajouté pour centrer tout le texte
+  text-align: center;
   @include DisplayCenter;
   background-image: url("../../Assets/BHover.png");
   background-size: cover;
@@ -24,20 +24,15 @@
     font-weight: 900;
     color: wheat;
   }
-
   h2 {
     color: wheat;
     font-size: 30px;
     margin-bottom: 0.5rem;
   }
-
   .subtitle {
     font-size: 18px;
-
-    // color: #333;
     margin-bottom: 1rem;
   }
-
   .home-section {
     margin-top: 2rem;
     margin-bottom: 2rem;
