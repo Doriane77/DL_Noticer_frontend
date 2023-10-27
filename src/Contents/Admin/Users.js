@@ -16,7 +16,6 @@ export default function Users() {
             <th style={{ width: "100px" }}>Username</th>
             <th>Email</th>
             <th style={{ width: "50px" }}>Notes</th>
-            <th style={{ width: "50px" }}>Critiques</th>
           </tr>
         </thead>
         <tbody>
@@ -26,7 +25,6 @@ export default function Users() {
                 <td style={{ width: "100px" }}>{item.username}</td>
                 <td>{item.email}</td>
                 <td style={{ width: "50px" }}>{item.notes.length}</td>
-                <th style={{ width: "50px" }}>{item.userReviews.length}</th>
               </tr>
             ))}
         </tbody>
